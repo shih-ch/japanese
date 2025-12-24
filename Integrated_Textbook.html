@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日文完全攻略 (句型+單字終極版)</title>
+    <style>
+        :root {
+            --primary: #58cc02;
+            --primary-dark: #46a302;
+            --secondary: #2b70c9;
+            --accent: #ce82ff;
+            --text: #3c3c3c;
+            --light-bg: #f7f7f7;
+            --sidebar-width: 280px;
+            --border: #e0e0e0;
+            --danger: #ff4b4b;
+            --warning: #ffc800;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            background-color: #fff;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Ruby Text Styling (Furigana) */
+        ruby { ruby-position: over; }
+        rt { color: var(--secondary); font-size: 0.6em; user-select: none; }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: #f8f9fa;
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            padding: 20px 0;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .sidebar h2 {
+            padding: 0 20px;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 20px;
+            color: #555;
+            text-decoration: none;
+            transition: background 0.2s;
+            border-left: 4px solid transparent;
+            font-size: 0.9rem;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: #e8f5e9;
+            color: var(--primary-dark);
+            border-left-color: var(--primary);
+            font-weight: bold;
+        }
+
+        .nav-sub-header {
+            padding: 20px 20px 5px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #999;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-top: 1px solid #eee;
+            margin-top: 5px;
+        }
+        .nav-sub-header:first-of-type { border-top: none; }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px 60px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 40px;
+        }
+        section:last-child { border-bottom: none; }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            color: var(--text);
+            border-bottom: 5px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+
+        h2.section-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2.section-title::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 30px;
+            background: var(--secondary);
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+        h3 {
+            color: #444;
+            border-left: 4px solid #ddd;
+            padding-left: 10px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Grammar Boxes */
+        .grammar-box {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .formula {
+            background: #f0f7ff;
+            color: var(--secondary);
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.15rem;
+            margin-bottom: 15px;
+            display: block;
+            border: 1px solid #d0e3ff;
+            width: fit-content;
+        }
+        
+        /* Tables */
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1rem;
+        }
+
+        .vocab-table th, .vocab-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        .vocab-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .vocab-table tr:nth-child(even) { background-color: #fafafa; }
+        .vocab-table tr:hover { background-color: #f0f7ff; }
+        
+        /* Specific Vocab Grids */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .vocab-card {
+            background: white;
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 10px;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .vocab-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-color: var(--secondary);
+        }
+        .vocab-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+            opacity: 0.5;
+        }
+        
+        .v-word { font-size: 1.2rem; font-weight: bold; color: #333; margin-bottom: 2px; }
+        .v-kana { font-size: 0.85rem; color: #888; margin-bottom: 5px; min-height: 1em; }
+        .v-mean { color: var(--secondary); font-weight: 600; font-size: 0.95rem; border-top: 1px solid #f0f0f0; padding-top: 5px; }
+
+        /* Example Sentences */
+        .example-list { list-style: none; padding: 0; }
+        .example-item { margin-bottom: 15px; padding-left: 15px; border-left: 3px solid var(--primary); font-size: 1.1rem; }
+
+        .hl { color: var(--primary-dark); font-weight: bold; background: #e8f5e9; padding: 0 4px; border-radius: 3px; }
+        .particle { background: #eee; padding: 0 5px; border-radius: 4px; font-weight: bold; color: #555; margin: 0 2px; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; }
+            .menu-toggle { display: block; position: fixed; top: 10px; right: 10px; z-index: 1000; background: var(--primary); color: white; padding: 10px; border-radius: 5px; cursor: pointer;}
+        }
+        @media (min-width: 901px) { .menu-toggle { display: none; } }
+    </style>
+</head>
+<body>
+
+    <div class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ 目錄</div>
+
+    <nav class="sidebar">
+        <h2>🇯🇵 Duolingo 整合全書</h2>
+        
+        <div class="nav-sub-header">PART 1: 句型與文法大全</div>
+        <a href="#g-basic" class="nav-item">1. 基礎句型 (是/不/嗎)</a>
+        <a href="#g-exist" class="nav-item">2. 存在與位置 (有/在)</a>
+        <a href="#g-verbs" class="nav-item">3. 動詞時態變化表</a>
+        <a href="#g-request" class="nav-item">4. 請求、進行與願望</a>
+        <a href="#g-adj" class="nav-item">5. 形容詞變化總表</a>
+        <a href="#g-compare" class="nav-item">6. 比較級與最高級</a>
+
+        <div class="nav-sub-header">PART 2: 終極單字庫 (600+)</div>
+        <a href="#v-time" class="nav-item">時間、日期與頻率</a>
+        <a href="#v-people" class="nav-item">人物、家庭與職業</a>
+        <a href="#v-home" class="nav-item">居家、電器與日用品</a>
+        <a href="#v-food" class="nav-item">食物、飲料與餐廳</a>
+        <a href="#v-fashion" class="nav-item">服飾與配件</a>
+        <a href="#v-city" class="nav-item">城市、交通與場所</a>
+        <a href="#v-hobby" class="nav-item">娛樂、運動與學校</a>
+        <a href="#v-nature" class="nav-item">自然與動物</a>
+        <a href="#v-verbs" class="nav-item">動詞總表</a>
+        <a href="#v-adj" class="nav-item">形容詞與狀態</a>
+        <a href="#v-abstract" class="nav-item">副詞與其他</a>
+    </nav>
+
+    <main class="main-content">
+        <h1 class="page-title">日文完全攻略：句型與單字整合版</h1>
+
+        <!-- ================= GRAMMAR SECTION ================= -->
+        <section id="g-basic">
+            <h2 class="section-title">1. 基礎句型與指示詞</h2>
+            
+            <div class="grammar-box">
+                <h3>(1) 肯定、否定與疑問</h3>
+                <div class="formula">肯定：A <span class="particle">は</span> B です。</div>
+                <div class="formula">否定：A <span class="particle">は</span> B じゃありません。</div>
+                <div class="formula">疑問：句子 + <span class="particle">か</span>。</div>
+                <p>例：<ruby>私<rt>わたし</rt></ruby><span class="particle">は</span><ruby>田<rt>た</rt>中<rt>なか</rt></ruby>です。(我是田中)<br>
+                   例：<ruby>学<rt>がく</rt>生<rt>せい</rt></ruby>じゃありません。(不是學生)<br>
+                   例：<ruby>日<rt>に</rt>本<rt>ほん</rt>人<rt>じん</rt></ruby>ですか。(是日本人嗎？)</p>
+            </div>
+
+            <div class="grammar-box">
+                <h3>(2) 指示代名詞 (Ko-so-a-do)</h3>
+                <table class="vocab-table">
+                    <tr><th>距離</th><th>物品 (這/那)</th><th>場所 (這裡/那裡)</th><th>連體詞 (+名詞)</th><th>方向</th></tr>
+                    <tr><td>近 (我)</td><td>これ (Kore)</td><td>ここ (Koko)</td><td>この (Kono)</td><td>こちら</td></tr>
+                    <tr><td>中 (你)</td><td>それ (Sore)</td><td>そこ (Soko)</td><td>その (Sono)</td><td>そちら</td></tr>
+                    <tr><td>遠 (他)</td><td>あれ (Are)</td><td>あそこ (Asoko)</td><td>あの (Ano)</td><td>あちら</td></tr>
+                    <tr><td>疑 (哪)</td><td>どれ (Dore)</td><td>どこ (Doko)</td><td>どの (Dono)</td><td>どちら</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="g-exist">
+            <h2 class="section-title">2. 存在句與位置</h2>
+            <div class="grammar-box">
+                <div class="formula">地點 <span class="particle">に</span> 物品/人 <span class="particle">が</span> あります/います。</div>
+                <ul class="example-list">
+                    <li class="example-item"><ruby>部<rt>へ</rt>屋<rt>や</rt></ruby>に<ruby>机<rt>つくえ</rt></ruby>が<strong>あります</strong>。(無生命：有書桌)</li>
+                    <li class="example-item"><ruby>庭<rt>にわ</rt></ruby>に<ruby>猫<rt>ねこ</rt></ruby>が<strong>います</strong>。(有生命：有貓)</li>
+                </ul>
+                <p><strong>常用方位：</strong><ruby>上<rt>うえ</rt></ruby>、<ruby>下<rt>した</rt></ruby>、<ruby>中<rt>なか</rt></ruby>、<ruby>外<rt>そと</rt></ruby>、<ruby>右<rt>みぎ</rt></ruby>、<ruby>左<rt>ひだり</rt></ruby>、<ruby>前<rt>まえ</rt></ruby>、<ruby>後<rt>うし</rt></ruby>ろ、<ruby>間<rt>あいだ</rt></ruby>、<ruby>隣<rt>となり</rt></ruby>、<ruby>近<rt>ちか</rt></ruby>く、<ruby>奥<rt>おく</rt></ruby>(裡面)、<ruby>隅<rt>すみ</rt></ruby>(角落)、<ruby>真<rt>まん</rt>中<rt>なか</rt></ruby>(正中間)。</p>
+            </div>
+        </section>
+
+        <section id="g-verbs">
+            <h2 class="section-title">3. 動詞時態變化表 (Masu形)</h2>
+            <div class="grammar-box">
+                <table class="vocab-table">
+                    <tr><th>時態</th><th>變化規則</th><th>例：食べる (吃)</th><th>例：行く (去)</th></tr>
+                    <tr><td><strong>現在/未來</strong></td><td>〜ます</td><td><ruby>食<rt>た</rt></ruby>べます</td><td><ruby>行<rt>い</rt></ruby>きます</td></tr>
+                    <tr><td><strong>現在否定</strong></td><td>〜ません</td><td><ruby>食<rt>た</rt></ruby>べません</td><td><ruby>行<rt>い</rt></ruby>きません</td></tr>
+                    <tr><td><strong>過去</strong></td><td>〜ました</td><td><ruby>食<rt>た</rt></ruby>べ<span class="hl">ました</span></td><td><ruby>行<rt>い</rt></ruby>き<span class="hl">ました</span></td></tr>
+                    <tr><td><strong>過去否定</strong></td><td>〜ませんでした</td><td><ruby>食<rt>た</rt></ruby>べ<span class="hl">ませんでした</span></td><td><ruby>行<rt>い</rt></ruby>き<span class="hl">ませんでした</span></td></tr>
+                    <tr><td><strong>邀約</strong></td><td>〜ましょう</td><td><ruby>食<rt>た</rt></ruby>べ<span class="hl">ましょう</span></td><td><ruby>行<rt>い</rt></ruby>き<span class="hl">ましょう</span></td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="g-request">
+            <h2 class="section-title">4. 請求、進行與願望</h2>
+            <div class="grammar-box">
+                <h3>(1) 請求與禁止</h3>
+                <ul>
+                    <li><strong>請做...：</strong>動詞(て形) + <span class="particle">ください</span>。<br>例：<ruby>食<rt>た</rt></ruby>べてください。(請吃)</li>
+                    <li><strong>請不要做...：</strong>動詞(ない形) + <span class="particle">ないで</span> + <span class="particle">ください</span>。<br>例：<ruby>行<rt>い</rt></ruby>かないでください。(請不要走)</li>
+                </ul>
+                <h3>(2) 現在進行式</h3>
+                <ul>
+                    <li><strong>正在做...：</strong>動詞(て形) + <span class="particle">います</span>。<br>例：<ruby>今<rt>いま</rt></ruby>、<ruby>勉<rt>べん</rt>強<rt>きょう</rt></ruby>しています。(現在正在唸書)</li>
+                </ul>
+                <h3>(3) 願望 (想要...)</h3>
+                <ul>
+                    <li><strong>想要物品：</strong>名詞 + <span class="particle">が</span> + <ruby>欲<rt>ほ</rt></ruby>しいです。<br>例：<ruby>水<rt>みず</rt></ruby>がほしいです。(我想要水)</li>
+                    <li><strong>想要做動作：</strong>動詞(去ます) + <span class="particle">たい</span>です。<br>例：<ruby>水<rt>みず</rt></ruby>が<ruby>飲<rt>の</rt></ruby>みたいです。(我想喝水)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="g-adj">
+            <h2 class="section-title">5. 形容詞完整變化</h2>
+            <div class="grammar-box">
+                <table class="vocab-table">
+                    <tr><th>詞性</th><th>現在肯定</th><th>現在否定</th><th>過去肯定</th><th>過去否定</th></tr>
+                    <tr><td><strong>い形容詞</strong><br>(例：暑い)</td><td><ruby>暑<rt>あつ</rt></ruby>いです</td><td><ruby>暑<rt>あつ</rt></ruby>くない</td><td><ruby>暑<rt>あつ</rt></ruby><span class="hl">かった</span></td><td><ruby>暑<rt>あつ</rt></ruby><span class="hl">くなかった</span></td></tr>
+                    <tr><td><strong>な形容詞</strong><br>(例：静か)</td><td><ruby>静<rt>しず</rt></ruby>かです</td><td><ruby>静<rt>しず</rt></ruby>かじゃありません</td><td><ruby>静<rt>しず</rt></ruby>か<span class="hl">でした</span></td><td><ruby>静<rt>しず</rt></ruby>か<span class="hl">じゃありませんでした</span></td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="g-compare">
+            <h2 class="section-title">6. 比較級與最高級</h2>
+            <div class="grammar-box">
+                <div class="formula">比較：A <span class="particle">のほうが</span> B <span class="particle">より</span> (形容詞) です。</div>
+                <p>例：<ruby>猫<rt>ねこ</rt></ruby><strong>のほうが</strong><ruby>犬<rt>いぬ</rt></ruby><strong>より</strong><ruby>好<rt>す</rt></ruby>きです。(比起狗，我更喜歡貓)</p>
+                <div class="formula">最高級：(範圍) <span class="particle">で</span> (項目) <span class="particle">が</span> <span class="hl">一番</span> (形容詞) です。</div>
+                <p>例：スポーツ<strong>で</strong>サッカー<strong>が一番</strong><ruby>好<rt>す</rt></ruby>きです。(運動之中最喜歡足球)</p>
+            </div>
+        </section>
+
+        <!-- ================= VOCABULARY SECTION ================= -->
+        
+        <section id="v-time">
+            <h2 class="section-title">時間、日期與頻率</h2>
+            <div class="grammar-box">
+                <h3>📆 月份與日期 (含特例)</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-card"><div class="v-word">一月</div><div class="v-kana">いちがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">二月</div><div class="v-kana">にがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">三月</div><div class="v-kana">さんがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">四月</div><div class="v-kana">しがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">五月</div><div class="v-kana">ごがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">六月</div><div class="v-kana">ろくがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">七月</div><div class="v-kana">しちがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">八月</div><div class="v-kana">はちがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">九月</div><div class="v-kana">くがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">十月</div><div class="v-kana">じゅうがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">十一月</div><div class="v-kana">じゅういちがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">十二月</div><div class="v-kana">じゅうにがつ</div></div>
+                    <div class="vocab-card"><div class="v-word">一日</div><div class="v-kana">ついたち</div></div>
+                    <div class="vocab-card"><div class="v-word">二日</div><div class="v-kana">ふつか</div></div>
+                    <div class="vocab-card"><div class="v-word">三日</div><div class="v-kana">みっか</div></div>
+                    <div class="vocab-card"><div class="v-word">四日</div><div class="v-kana">よっか</div></div>
+                    <div class="vocab-card"><div class="v-word">五日</div><div class="v-kana">いつか</div></div>
+                    <div class="vocab-card"><div class="v-word">六日</div><div class="v-kana">むいか</div></div>
+                    <div class="vocab-card"><div class="v-word">七日</div><div class="v-kana">なのか</div></div>
+                    <div class="vocab-card"><div class="v-word">八日</div><div class="v-kana">ようか</div></div>
+                    <div class="vocab-card"><div class="v-word">九日</div><div class="v-kana">ここのか</div></div>
+                    <div class="vocab-card"><div class="v-word">十日</div><div class="v-kana">とおか</div></div>
+                    <div class="vocab-card"><div class="v-word">二十日</div><div class="v-kana">はつか</div></div>
+                    <div class="vocab-card"><div class="v-word">三十一日</div><div class="v-kana">さんじゅういちにち</div></div>
+                </div>
+            </div>
+            <div class="grammar-box">
+                <h3>⏰ 相對時間與頻率</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-card"><div class="v-word">昨日</div><div class="v-kana">きのう</div><div class="v-mean">昨天</div></div>
+                    <div class="vocab-card"><div class="v-word">今日</div><div class="v-kana">きょう</div><div class="v-mean">今天</div></div>
+                    <div class="vocab-card"><div class="v-word">明日</div><div class="v-kana">あした</div><div class="v-mean">明天</div></div>
+                    <div class="vocab-card"><div class="v-word">先週</div><div class="v-kana">せんしゅう</div><div class="v-mean">上週</div></div>
+                    <div class="vocab-card"><div class="v-word">今週</div><div class="v-kana">こんしゅう</div><div class="v-mean">本週</div></div>
+                    <div class="vocab-card"><div class="v-word">来週</div><div class="v-kana">らいしゅう</div><div class="v-mean">下週</div></div>
+                    <div class="vocab-card"><div class="v-word">先月</div><div class="v-kana">せんげつ</div><div class="v-mean">上個月</div></div>
+                    <div class="vocab-card"><div class="v-word">今月</div><div class="v-kana">こんげつ</div><div class="v-mean">這個月</div></div>
+                    <div class="vocab-card"><div class="v-word">来月</div><div class="v-kana">らいげつ</div><div class="v-mean">下個月</div></div>
+                    <div class="vocab-card"><div class="v-word">去年</div><div class="v-kana">きょねん</div><div class="v-mean">去年</div></div>
+                    <div class="vocab-card"><div class="v-word">今年</div><div class="v-kana">ことし</div><div class="v-mean">今年</div></div>
+                    <div class="vocab-card"><div class="v-word">来年</div><div class="v-kana">らいねん</div><div class="v-mean">明年</div></div>
+                    <div class="vocab-card"><div class="v-word">午前</div><div class="v-kana">ごぜん</div><div class="v-mean">上午</div></div>
+                    <div class="vocab-card"><div class="v-word">午後</div><div class="v-kana">ごご</div><div class="v-mean">下午</div></div>
+                    <div class="vocab-card"><div class="v-word">朝</div><div class="v-kana">あさ</div><div class="v-mean">早上</div></div>
+                    <div class="vocab-card"><div class="v-word">夜</div><div class="v-kana">よる</div><div class="v-mean">晚上</div></div>
+                    <div class="vocab-card"><div class="v-word">今夜</div><div class="v-kana">こんや</div><div class="v-mean">今晚</div></div>
+                    <div class="vocab-card"><div class="v-word">今晩</div><div class="v-kana">こんばん</div><div class="v-mean">今晚</div></div>
+                    <div class="vocab-card"><div class="v-word">後で</div><div class="v-kana">あとで</div><div class="v-mean">待會兒</div></div>
+                    <div class="vocab-card"><div class="v-word">今</div><div class="v-kana">いま</div><div class="v-mean">現在</div></div>
+                    <div class="vocab-card"><div class="v-word">毎日</div><div class="v-kana">まいにち</div><div class="v-mean">每天</div></div>
+                    <div class="vocab-card"><div class="v-word">毎朝</div><div class="v-kana">まいあさ</div><div class="v-mean">每天早上</div></div>
+                    <div class="vocab-card"><div class="v-word">毎晩</div><div class="v-kana">まいばん</div><div class="v-mean">每天晚上</div></div>
+                    <div class="vocab-card"><div class="v-word">毎週</div><div class="v-kana">まいしゅう</div><div class="v-mean">每週</div></div>
+                    <div class="vocab-card"><div class="v-word">一日中</div><div class="v-kana">いちにちじゅう</div><div class="v-mean">一整天</div></div>
+                    <div class="vocab-card"><div class="v-word">月/火/水/木/金/土/日曜日</div><div class="v-mean">星期一~日</div></div>
+                    <div class="vocab-card"><div class="v-word">何曜日</div><div class="v-kana">なんようび</div><div class="v-mean">星期幾</div></div>
+                    <div class="vocab-card"><div class="v-word">何時</div><div class="v-kana">なんじ</div><div class="v-mean">幾點</div></div>
+                    <div class="vocab-card"><div class="v-word">半</div><div class="v-kana">はん</div><div class="v-mean">半</div></div>
+                    <div class="vocab-card"><div class="v-word">頃</div><div class="v-kana">ごろ</div><div class="v-mean">左右(時間)</div></div>
+                    <div class="vocab-card"><div class="v-word">いつも</div><div class="v-mean">總是</div></div>
+                    <div class="vocab-card"><div class="v-word">よく</div><div class="v-mean">經常</div></div>
+                    <div class="vocab-card"><div class="v-word">時々</div><div class="v-kana">ときどき</div><div class="v-mean">有時</div></div>
+                    <div class="vocab-card"><div class="v-word">まだ</div><div class="v-mean">還/尚未</div></div>
+                    <div class="vocab-card"><div class="v-word">もう</div><div class="v-mean">已經</div></div>
+                    <div class="vocab-card"><div class="v-word">また</div><div class="v-mean">再</div></div>
+                    <div class="vocab-card"><div class="v-word">今度</div><div class="v-kana">こんど</div><div class="v-mean">下次</div></div>
+                    <div class="vocab-card"><div class="v-word">二日間</div><div class="v-kana">ふつかかん</div><div class="v-mean">兩天期間</div></div>
+                    <div class="vocab-card"><div class="v-word">一週間</div><div class="v-kana">いっしゅうかん</div><div class="v-mean">一週期間</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="v-people">
+            <h2 class="section-title">人物、家庭與職業</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">私/私たち</div><div class="v-kana">わたし/わたしたち</div><div class="v-mean">我/我們</div></div>
+                <div class="vocab-card"><div class="v-word">父/お父さん</div><div class="v-kana">ちち/おとうさん</div><div class="v-mean">父親/你父親</div></div>
+                <div class="vocab-card"><div class="v-word">母/お母さん</div><div class="v-kana">はは/おかあさん</div><div class="v-mean">母親/你母親</div></div>
+                <div class="vocab-card"><div class="v-word">祖父母</div><div class="v-kana">そふぼ</div><div class="v-mean">祖父母</div></div>
+                <div class="vocab-card"><div class="v-word">両親</div><div class="v-kana">りょうしん</div><div class="v-mean">父母</div></div>
+                <div class="vocab-card"><div class="v-word">兄弟</div><div class="v-kana">きょうだい</div><div class="v-mean">兄弟姊妹</div></div>
+                <div class="vocab-card"><div class="v-word">兄/お兄さん</div><div class="v-kana">あに/おにいさん</div><div class="v-mean">哥哥</div></div>
+                <div class="vocab-card"><div class="v-word">姉/お姉さん</div><div class="v-kana">あね/おねえさん</div><div class="v-mean">姊姊</div></div>
+                <div class="vocab-card"><div class="v-word">弟/弟さん</div><div class="v-kana">おとうと/おとうとさん</div><div class="v-mean">弟弟</div></div>
+                <div class="vocab-card"><div class="v-word">妹/妹さん</div><div class="v-kana">いもうと/いもうとさん</div><div class="v-mean">妹妹</div></div>
+                <div class="vocab-card"><div class="v-word">夫/旦那さん</div><div class="v-kana">おっと/だんなさん</div><div class="v-mean">丈夫</div></div>
+                <div class="vocab-card"><div class="v-word">妻/奥さん</div><div class="v-kana">つま/おくさん</div><div class="v-mean">妻子</div></div>
+                <div class="vocab-card"><div class="v-word">息子</div><div class="v-kana">むすこ</div><div class="v-mean">兒子</div></div>
+                <div class="vocab-card"><div class="v-word">娘</div><div class="v-kana">むすめ</div><div class="v-mean">女兒</div></div>
+                <div class="vocab-card"><div class="v-word">子供</div><div class="v-kana">こども</div><div class="v-mean">孩子</div></div>
+                <div class="vocab-card"><div class="v-word">赤ちゃん</div><div class="v-kana">あかちゃん</div><div class="v-mean">嬰兒</div></div>
+                <div class="vocab-card"><div class="v-word">いとこ</div><div class="v-mean">表堂兄弟姊妹</div></div>
+                <div class="vocab-card"><div class="v-word">家族</div><div class="v-kana">かぞく</div><div class="v-mean">家人</div></div>
+                <div class="vocab-card"><div class="v-word">彼氏</div><div class="v-kana">かれし</div><div class="v-mean">男朋友</div></div>
+                <div class="vocab-card"><div class="v-word">彼女</div><div class="v-kana">かのじょ</div><div class="v-mean">女朋友</div></div>
+                <div class="vocab-card"><div class="v-word">友達</div><div class="v-kana">ともだち</div><div class="v-mean">朋友</div></div>
+                <div class="vocab-card"><div class="v-word">同僚</div><div class="v-kana">どうりょう</div><div class="v-mean">同事</div></div>
+                <div class="vocab-card"><div class="v-word">大家</div><div class="v-kana">おおや</div><div class="v-mean">房東</div></div>
+                <div class="vocab-card"><div class="v-word">隣の人</div><div class="v-kana">となりのひと</div><div class="v-mean">隔壁的人</div></div>
+                <div class="vocab-card"><div class="v-word">お客さん</div><div class="v-kana">おきゃくさん</div><div class="v-mean">客人</div></div>
+                <div class="vocab-card"><div class="v-word">スタッフ</div><div class="v-mean">員工</div></div>
+                <div class="vocab-card"><div class="v-word">店員</div><div class="v-kana">てんいん</div><div class="v-mean">店員</div></div>
+                <div class="vocab-card"><div class="v-word">駅員</div><div class="v-kana">えきいん</div><div class="v-mean">車站人員</div></div>
+                <div class="vocab-card"><div class="v-word">医者</div><div class="v-kana">いしゃ</div><div class="v-mean">醫生</div></div>
+                <div class="vocab-card"><div class="v-word">弁護士</div><div class="v-kana">べんごし</div><div class="v-mean">律師</div></div>
+                <div class="vocab-card"><div class="v-word">警察官</div><div class="v-kana">けいさつかん</div><div class="v-mean">警察</div></div>
+                <div class="vocab-card"><div class="v-word">俳優</div><div class="v-kana">はいゆう</div><div class="v-mean">演員</div></div>
+                <div class="vocab-card"><div class="v-word">監督</div><div class="v-kana">かんとく</div><div class="v-mean">導演</div></div>
+                <div class="vocab-card"><div class="v-word">アーティスト</div><div class="v-mean">藝術家/歌手</div></div>
+                <div class="vocab-card"><div class="v-word">エンジニア</div><div class="v-mean">工程師</div></div>
+                <div class="vocab-card"><div class="v-word">学生</div><div class="v-kana">がくせい</div><div class="v-mean">學生</div></div>
+                <div class="vocab-card"><div class="v-word">留学生</div><div class="v-kana">りゅうがくせい</div><div class="v-mean">留學生</div></div>
+                <div class="vocab-card"><div class="v-word">一年生</div><div class="v-kana">いちねんせい</div><div class="v-mean">一年級生</div></div>
+                <div class="vocab-card"><div class="v-word">日本人</div><div class="v-kana">にほんじん</div><div class="v-mean">日本人</div></div>
+                <div class="vocab-card"><div class="v-word">アメリカ人</div><div class="v-kana">アメリカじん</div><div class="v-mean">美國人</div></div>
+                <div class="vocab-card"><div class="v-word">誰</div><div class="v-kana">だれ</div><div class="v-mean">誰</div></div>
+                <div class="vocab-card"><div class="v-word">みんな</div><div class="v-mean">大家</div></div>
+                <div class="vocab-card"><div class="v-word">一人/二人</div><div class="v-kana">ひとり/ふたり</div><div class="v-mean">一人/兩人</div></div>
+            </div>
+        </section>
+
+        <section id="v-home">
+            <h2 class="section-title">居家、電器與日用品</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">家/うち</div><div class="v-kana">いえ/うち</div><div class="v-mean">家</div></div>
+                <div class="vocab-card"><div class="v-word">アパート</div><div class="v-mean">公寓</div></div>
+                <div class="vocab-card"><div class="v-word">玄関</div><div class="v-kana">げんかん</div><div class="v-mean">玄關</div></div>
+                <div class="vocab-card"><div class="v-word">リビング</div><div class="v-mean">客廳</div></div>
+                <div class="vocab-card"><div class="v-word">ダイニング</div><div class="v-mean">飯廳</div></div>
+                <div class="vocab-card"><div class="v-word">台所/キッチン</div><div class="v-kana">だいどころ</div><div class="v-mean">廚房</div></div>
+                <div class="vocab-card"><div class="v-word">お風呂</div><div class="v-kana">おふろ</div><div class="v-mean">浴室</div></div>
+                <div class="vocab-card"><div class="v-word">トイレ</div><div class="v-mean">廁所</div></div>
+                <div class="vocab-card"><div class="v-word">窓</div><div class="v-kana">まど</div><div class="v-mean">窗戶</div></div>
+                <div class="vocab-card"><div class="v-word">カーテン</div><div class="v-mean">窗簾</div></div>
+                <div class="vocab-card"><div class="v-word">壁</div><div class="v-kana">かべ</div><div class="v-mean">牆壁</div></div>
+                <div class="vocab-card"><div class="v-word">ドア/門</div><div class="v-kana">もん</div><div class="v-mean">門</div></div>
+                <div class="vocab-card"><div class="v-word">家具</div><div class="v-kana">かぐ</div><div class="v-mean">家具</div></div>
+                <div class="vocab-card"><div class="v-word">ソファ</div><div class="v-mean">沙發</div></div>
+                <div class="vocab-card"><div class="v-word">テーブル</div><div class="v-mean">桌子</div></div>
+                <div class="vocab-card"><div class="v-word">机</div><div class="v-kana">つくえ</div><div class="v-mean">書桌</div></div>
+                <div class="vocab-card"><div class="v-word">椅子</div><div class="v-kana">いす</div><div class="v-mean">椅子</div></div>
+                <div class="vocab-card"><div class="v-word">本棚</div><div class="v-kana">ほんだな</div><div class="v-mean">書架</div></div>
+                <div class="vocab-card"><div class="v-word">引き出し</div><div class="v-kana">ひきだし</div><div class="v-mean">抽屜</div></div>
+                <div class="vocab-card"><div class="v-word">クローゼット</div><div class="v-mean">衣櫥</div></div>
+                <div class="vocab-card"><div class="v-word">布団</div><div class="v-kana">ふとん</div><div class="v-mean">被褥</div></div>
+                <div class="vocab-card"><div class="v-word">ベッド</div><div class="v-mean">床</div></div>
+                <div class="vocab-card"><div class="v-word">ブランケット</div><div class="v-mean">毯子</div></div>
+                <div class="vocab-card"><div class="v-word">花瓶</div><div class="v-kana">かびん</div><div class="v-mean">花瓶</div></div>
+                <div class="vocab-card"><div class="v-word">ゴミ</div><div class="v-mean">垃圾</div></div>
+                <div class="vocab-card"><div class="v-word">ゴミ箱</div><div class="v-kana">ごみばこ</div><div class="v-mean">垃圾桶</div></div>
+                <div class="vocab-card"><div class="v-word">ティッシュ</div><div class="v-mean">衛生紙</div></div>
+                <div class="vocab-card"><div class="v-word">シャンプー</div><div class="v-mean">洗髮精</div></div>
+                <div class="vocab-card"><div class="v-word">シャワー</div><div class="v-mean">淋浴</div></div>
+                <div class="vocab-card"><div class="v-word">ハンドジェル</div><div class="v-mean">洗手液</div></div>
+                <div class="vocab-card"><div class="v-word">リモコン</div><div class="v-mean">遙控器</div></div>
+                <div class="vocab-card"><div class="v-word">電池</div><div class="v-kana">でんち</div><div class="v-mean">電池</div></div>
+                <div class="vocab-card"><div class="v-word">アラーム</div><div class="v-mean">鬧鐘</div></div>
+                <div class="vocab-card"><div class="v-word">スリッパ</div><div class="v-mean">拖鞋</div></div>
+                <div class="vocab-card"><div class="v-word">家賃</div><div class="v-kana">やちん</div><div class="v-mean">房租</div></div>
+                <div class="vocab-card"><div class="v-word">鍵</div><div class="v-kana">かぎ</div><div class="v-mean">鑰匙</div></div>
+                <div class="vocab-card"><div class="v-word">冷蔵庫</div><div class="v-kana">れいぞうこ</div><div class="v-mean">冰箱</div></div>
+                <div class="vocab-card"><div class="v-word">洗濯機</div><div class="v-kana">せんたくき</div><div class="v-mean">洗衣機</div></div>
+                <div class="vocab-card"><div class="v-word">掃除機</div><div class="v-kana">そうじき</div><div class="v-mean">吸塵器</div></div>
+                <div class="vocab-card"><div class="v-word">エアコン</div><div class="v-mean">冷氣</div></div>
+                <div class="vocab-card"><div class="v-word">電子レンジ</div><div class="v-kana">でんしレンジ</div><div class="v-mean">微波爐</div></div>
+                <div class="vocab-card"><div class="v-word">パソコン</div><div class="v-mean">電腦</div></div>
+                <div class="vocab-card"><div class="v-word">スマホ</div><div class="v-mean">智慧手機</div></div>
+                <div class="vocab-card"><div class="v-word">タブレット</div><div class="v-mean">平板</div></div>
+                <div class="vocab-card"><div class="v-word">スピーカー</div><div class="v-mean">音響</div></div>
+                <div class="vocab-card"><div class="v-word">ヘッドホン</div><div class="v-mean">耳機</div></div>
+                <div class="vocab-card"><div class="v-word">ケーブル</div><div class="v-mean">線纜</div></div>
+                <div class="vocab-card"><div class="v-word">モニター</div><div class="v-mean">螢幕</div></div>
+                <div class="vocab-card"><div class="v-word">マウス</div><div class="v-mean">滑鼠</div></div>
+                <div class="vocab-card"><div class="v-word">キーボード</div><div class="v-mean">鍵盤</div></div>
+            </div>
+        </section>
+
+        <section id="v-food">
+            <h2 class="section-title">食物、飲料與餐廳</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">ご飯</div><div class="v-kana">ごはん</div><div class="v-mean">飯</div></div>
+                <div class="vocab-card"><div class="v-word">パン</div><div class="v-mean">麵包</div></div>
+                <div class="vocab-card"><div class="v-word">野菜</div><div class="v-kana">やさい</div><div class="v-mean">蔬菜</div></div>
+                <div class="vocab-card"><div class="v-word">果物</div><div class="v-kana">くだもの</div><div class="v-mean">水果</div></div>
+                <div class="vocab-card"><div class="v-word">朝ご飯</div><div class="v-kana">あさごはん</div><div class="v-mean">早餐</div></div>
+                <div class="vocab-card"><div class="v-word">昼ご飯</div><div class="v-kana">ひるごはん</div><div class="v-mean">午餐</div></div>
+                <div class="vocab-card"><div class="v-word">晩ご飯</div><div class="v-kana">ばんごはん</div><div class="v-mean">晚餐</div></div>
+                <div class="vocab-card"><div class="v-word">お弁当</div><div class="v-kana">おべんとう</div><div class="v-mean">便當</div></div>
+                <div class="vocab-card"><div class="v-word">おにぎり</div><div class="v-mean">飯糰</div></div>
+                <div class="vocab-card"><div class="v-word">ラーメン</div><div class="v-mean">拉麵</div></div>
+                <div class="vocab-card"><div class="v-word">カレー</div><div class="v-mean">咖哩</div></div>
+                <div class="vocab-card"><div class="v-word">パスタ</div><div class="v-mean">義大利麵</div></div>
+                <div class="vocab-card"><div class="v-word">ハンバーガー</div><div class="v-mean">漢堡</div></div>
+                <div class="vocab-card"><div class="v-word">ピザ</div><div class="v-mean">披薩</div></div>
+                <div class="vocab-card"><div class="v-word">ステーキ</div><div class="v-mean">牛排</div></div>
+                <div class="vocab-card"><div class="v-word">シリアル</div><div class="v-mean">麥片</div></div>
+                <div class="vocab-card"><div class="v-word">チキン</div><div class="v-mean">雞肉</div></div>
+                <div class="vocab-card"><div class="v-word">サラダ</div><div class="v-mean">沙拉</div></div>
+                <div class="vocab-card"><div class="v-word">スープ</div><div class="v-mean">湯</div></div>
+                <div class="vocab-card"><div class="v-word">豚肉</div><div class="v-kana">ぶたにく</div><div class="v-mean">豬肉</div></div>
+                <div class="vocab-card"><div class="v-word">牛肉</div><div class="v-kana">ぎゅうにく</div><div class="v-mean">牛肉</div></div>
+                <div class="vocab-card"><div class="v-word">魚</div><div class="v-kana">さかな</div><div class="v-mean">魚</div></div>
+                <div class="vocab-card"><div class="v-word">刺身</div><div class="v-kana">さしみ</div><div class="v-mean">生魚片</div></div>
+                <div class="vocab-card"><div class="v-word">卵</div><div class="v-kana">たまご</div><div class="v-mean">雞蛋</div></div>
+                <div class="vocab-card"><div class="v-word">豆腐</div><div class="v-kana">とうふ</div><div class="v-mean">豆腐</div></div>
+                <div class="vocab-card"><div class="v-word">とんかつ</div><div class="v-mean">炸豬排</div></div>
+                <div class="vocab-card"><div class="v-word">天ぷら</div><div class="v-kana">てんぷら</div><div class="v-mean">天婦羅</div></div>
+                <div class="vocab-card"><div class="v-word">焼きそば</div><div class="v-kana">やきそば</div><div class="v-mean">炒麵</div></div>
+                <div class="vocab-card"><div class="v-word">タコライス</div><div class="v-mean">塔可飯</div></div>
+                <div class="vocab-card"><div class="v-word">餅</div><div class="v-kana">もち</div><div class="v-mean">麻糬</div></div>
+                <div class="vocab-card"><div class="v-word">お粥</div><div class="v-kana">おかゆ</div><div class="v-mean">粥</div></div>
+                <div class="vocab-card"><div class="v-word">味噌汁</div><div class="v-kana">みそしる</div><div class="v-mean">味噌湯</div></div>
+                <div class="vocab-card"><div class="v-word">定食</div><div class="v-kana">ていしょく</div><div class="v-mean">定食</div></div>
+                <div class="vocab-card"><div class="v-word">うどん</div><div class="v-mean">烏龍麵</div></div>
+                <div class="vocab-card"><div class="v-word">そば</div><div class="v-mean">蕎麥麵</div></div>
+                <div class="vocab-card"><div class="v-word">牛丼</div><div class="v-kana">ぎゅうどん</div><div class="v-mean">牛丼</div></div>
+                <div class="vocab-card"><div class="v-word">いちご</div><div class="v-mean">草莓</div></div>
+                <div class="vocab-card"><div class="v-word">りんご</div><div class="v-mean">蘋果</div></div>
+                <div class="vocab-card"><div class="v-word">みかん</div><div class="v-mean">橘子</div></div>
+                <div class="vocab-card"><div class="v-word">バナナ</div><div class="v-mean">香蕉</div></div>
+                <div class="vocab-card"><div class="v-word">マンゴー</div><div class="v-mean">芒果</div></div>
+                <div class="vocab-card"><div class="v-word">パイナップル</div><div class="v-mean">鳳梨</div></div>
+                <div class="vocab-card"><div class="v-word">すいか</div><div class="v-mean">西瓜</div></div>
+                <div class="vocab-card"><div class="v-word">オレンジ</div><div class="v-mean">柳橙</div></div>
+                <div class="vocab-card"><div class="v-word">きのこ</div><div class="v-mean">蘑菇</div></div>
+                <div class="vocab-card"><div class="v-word">ブロッコリー</div><div class="v-mean">花椰菜</div></div>
+                <div class="vocab-card"><div class="v-word">人参</div><div class="v-kana">にんじん</div><div class="v-mean">紅蘿蔔</div></div>
+                <div class="vocab-card"><div class="v-word">玉ねぎ</div><div class="v-kana">たまねぎ</div><div class="v-mean">洋蔥</div></div>
+                <div class="vocab-card"><div class="v-word">じゃがいも</div><div class="v-mean">馬鈴薯</div></div>
+                <div class="vocab-card"><div class="v-word">トマト</div><div class="v-mean">番茄</div></div>
+                <div class="vocab-card"><div class="v-word">さつまいも</div><div class="v-mean">地瓜</div></div>
+                <div class="vocab-card"><div class="v-word">ケーキ</div><div class="v-mean">蛋糕</div></div>
+                <div class="vocab-card"><div class="v-word">チョコレート</div><div class="v-mean">巧克力</div></div>
+                <div class="vocab-card"><div class="v-word">クッキー</div><div class="v-mean">餅乾</div></div>
+                <div class="vocab-card"><div class="v-word">ドーナツ</div><div class="v-mean">甜甜圈</div></div>
+                <div class="vocab-card"><div class="v-word">アイスクリーム</div><div class="v-mean">冰淇淋</div></div>
+                <div class="vocab-card"><div class="v-word">わたあめ</div><div class="v-mean">棉花糖</div></div>
+                <div class="vocab-card"><div class="v-word">パンケーキ</div><div class="v-mean">鬆餅</div></div>
+                <div class="vocab-card"><div class="v-word">水</div><div class="v-kana">みず</div><div class="v-mean">水</div></div>
+                <div class="vocab-card"><div class="v-word">お茶</div><div class="v-kana">おちゃ</div><div class="v-mean">茶</div></div>
+                <div class="vocab-card"><div class="v-word">紅茶</div><div class="v-kana">こうちゃ</div><div class="v-mean">紅茶</div></div>
+                <div class="vocab-card"><div class="v-word">コーヒー</div><div class="v-mean">咖啡</div></div>
+                <div class="vocab-card"><div class="v-word">牛乳</div><div class="v-kana">ぎゅうにゅう</div><div class="v-mean">牛奶</div></div>
+                <div class="vocab-card"><div class="v-word">豆乳</div><div class="v-kana">とうにゅう</div><div class="v-mean">豆漿</div></div>
+                <div class="vocab-card"><div class="v-word">ジュース</div><div class="v-mean">果汁</div></div>
+                <div class="vocab-card"><div class="v-word">コーラ</div><div class="v-mean">可樂</div></div>
+                <div class="vocab-card"><div class="v-word">お酒</div><div class="v-kana">おさけ</div><div class="v-mean">酒</div></div>
+                <div class="vocab-card"><div class="v-word">ビール</div><div class="v-mean">啤酒</div></div>
+                <div class="vocab-card"><div class="v-word">ワイン</div><div class="v-mean">紅酒</div></div>
+                <div class="vocab-card"><div class="v-word">スムージー</div><div class="v-mean">冰沙</div></div>
+                <div class="vocab-card"><div class="v-word">塩</div><div class="v-kana">しお</div><div class="v-mean">鹽</div></div>
+                <div class="vocab-card"><div class="v-word">砂糖</div><div class="v-kana">さとう</div><div class="v-mean">糖</div></div>
+                <div class="vocab-card"><div class="v-word">醤油</div><div class="v-kana">しょうゆ</div><div class="v-mean">醬油</div></div>
+                <div class="vocab-card"><div class="v-word">ソース</div><div class="v-mean">醬汁</div></div>
+                <div class="vocab-card"><div class="v-word">バター</div><div class="v-mean">奶油</div></div>
+                <div class="vocab-card"><div class="v-word">黒胡椒</div><div class="v-kana">くろこしょう</div><div class="v-mean">黑胡椒</div></div>
+                <div class="vocab-card"><div class="v-word">小麦粉</div><div class="v-kana">こむぎこ</div><div class="v-mean">麵粉</div></div>
+                <div class="vocab-card"><div class="v-word">食べ放題</div><div class="v-kana">たべほうだい</div><div class="v-mean">吃到飽</div></div>
+                <div class="vocab-card"><div class="v-word">メニュー</div><div class="v-mean">菜單</div></div>
+                <div class="vocab-card"><div class="v-word">注文</div><div class="v-kana">ちゅうもん</div><div class="v-mean">點餐</div></div>
+                <div class="vocab-card"><div class="v-word">会計</div><div class="v-kana">かいけい</div><div class="v-mean">結帳</div></div>
+                <div class="vocab-card"><div class="v-word">お皿</div><div class="v-kana">おさら</div><div class="v-mean">盤子</div></div>
+                <div class="vocab-card"><div class="v-word">茶碗</div><div class="v-kana">ちゃわん</div><div class="v-mean">碗</div></div>
+                <div class="vocab-card"><div class="v-word">箸</div><div class="v-kana">はし</div><div class="v-mean">筷子</div></div>
+                <div class="vocab-card"><div class="v-word">スプーン</div><div class="v-mean">湯匙</div></div>
+                <div class="vocab-card"><div class="v-word">フォーク</div><div class="v-mean">叉子</div></div>
+                <div class="vocab-card"><div class="v-word">ナイフ</div><div class="v-mean">刀子</div></div>
+                <div class="vocab-card"><div class="v-word">ストロー</div><div class="v-mean">吸管</div></div>
+                <div class="vocab-card"><div class="v-word">レシピ</div><div class="v-mean">食譜</div></div>
+            </div>
+        </section>
+
+        <section id="v-fashion">
+            <h2 class="section-title">服飾與配件</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">服</div><div class="v-kana">ふく</div><div class="v-mean">衣服</div></div>
+                <div class="vocab-card"><div class="v-word">コート</div><div class="v-mean">大衣</div></div>
+                <div class="vocab-card"><div class="v-word">セーター</div><div class="v-mean">毛衣</div></div>
+                <div class="vocab-card"><div class="v-word">ジャケット</div><div class="v-mean">夾克</div></div>
+                <div class="vocab-card"><div class="v-word">スーツ</div><div class="v-mean">西裝</div></div>
+                <div class="vocab-card"><div class="v-word">ドレス</div><div class="v-mean">洋裝</div></div>
+                <div class="vocab-card"><div class="v-word">スカート</div><div class="v-mean">裙子</div></div>
+                <div class="vocab-card"><div class="v-word">ジーンズ</div><div class="v-mean">牛仔褲</div></div>
+                <div class="vocab-card"><div class="v-word">Tシャツ</div><div class="v-mean">T恤</div></div>
+                <div class="vocab-card"><div class="v-word">ブラウス</div><div class="v-mean">罩衫</div></div>
+                <div class="vocab-card"><div class="v-word">パーカー</div><div class="v-mean">帽T</div></div>
+                <div class="vocab-card"><div class="v-word">水着</div><div class="v-kana">みずぎ</div><div class="v-mean">泳衣</div></div>
+                <div class="vocab-card"><div class="v-word">帽子</div><div class="v-kana">ぼうし</div><div class="v-mean">帽子</div></div>
+                <div class="vocab-card"><div class="v-word">靴</div><div class="v-kana">くつ</div><div class="v-mean">鞋子</div></div>
+                <div class="vocab-card"><div class="v-word">靴下</div><div class="v-kana">くつした</div><div class="v-mean">襪子</div></div>
+                <div class="vocab-card"><div class="v-word">手袋</div><div class="v-kana">てぶくろ</div><div class="v-mean">手套</div></div>
+                <div class="vocab-card"><div class="v-word">ネクタイ</div><div class="v-mean">領帶</div></div>
+                <div class="vocab-card"><div class="v-word">マフラー</div><div class="v-mean">圍巾</div></div>
+                <div class="vocab-card"><div class="v-word">腕時計</div><div class="v-kana">うでどけい</div><div class="v-mean">手錶</div></div>
+                <div class="vocab-card"><div class="v-word">ネックレス</div><div class="v-mean">項鍊</div></div>
+                <div class="vocab-card"><div class="v-word">アクセサリー</div><div class="v-mean">飾品</div></div>
+                <div class="vocab-card"><div class="v-word">財布</div><div class="v-kana">さいふ</div><div class="v-mean">錢包</div></div>
+                <div class="vocab-card"><div class="v-word">鞄</div><div class="v-kana">かばん</div><div class="v-mean">包包</div></div>
+                <div class="vocab-card"><div class="v-word">サイズ</div><div class="v-mean">尺寸</div></div>
+                <div class="vocab-card"><div class="v-word">レディース</div><div class="v-mean">女裝</div></div>
+                <div class="vocab-card"><div class="v-word">メンズ</div><div class="v-mean">男裝</div></div>
+            </div>
+        </section>
+
+        <section id="v-city">
+            <h2 class="section-title">城市、交通與場所</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">会社</div><div class="v-kana">かいしゃ</div><div class="v-mean">公司</div></div>
+                <div class="vocab-card"><div class="v-word">オフィス</div><div class="v-mean">辦公室</div></div>
+                <div class="vocab-card"><div class="v-word">学校</div><div class="v-kana">がっこう</div><div class="v-mean">學校</div></div>
+                <div class="vocab-card"><div class="v-word">図書館</div><div class="v-kana">としょかん</div><div class="v-mean">圖書館</div></div>
+                <div class="vocab-card"><div class="v-word">病院</div><div class="v-kana">びょういん</div><div class="v-mean">醫院</div></div>
+                <div class="vocab-card"><div class="v-word">銀行</div><div class="v-kana">ぎんこう</div><div class="v-mean">銀行</div></div>
+                <div class="vocab-card"><div class="v-word">郵便局</div><div class="v-kana">ゆうびんきょく</div><div class="v-mean">郵局</div></div>
+                <div class="vocab-card"><div class="v-word">コンビニ</div><div class="v-mean">便利商店</div></div>
+                <div class="vocab-card"><div class="v-word">スーパー</div><div class="v-mean">超市</div></div>
+                <div class="vocab-card"><div class="v-word">デパート</div><div class="v-mean">百貨公司</div></div>
+                <div class="vocab-card"><div class="v-word">屋台</div><div class="v-kana">やたい</div><div class="v-mean">路邊攤</div></div>
+                <div class="vocab-card"><div class="v-word">駅</div><div class="v-kana">えき</div><div class="v-mean">車站</div></div>
+                <div class="vocab-card"><div class="v-word">空港</div><div class="v-kana">くうこう</div><div class="v-mean">機場</div></div>
+                <div class="vocab-card"><div class="v-word">港</div><div class="v-kana">みなと</div><div class="v-mean">港口</div></div>
+                <div class="vocab-card"><div class="v-word">駐車場</div><div class="v-kana">ちゅうしゃじょう</div><div class="v-mean">停車場</div></div>
+                <div class="vocab-card"><div class="v-word">電車</div><div class="v-kana">でんしゃ</div><div class="v-mean">電車</div></div>
+                <div class="vocab-card"><div class="v-word">地下鉄</div><div class="v-kana">ちかてつ</div><div class="v-mean">地鐵</div></div>
+                <div class="vocab-card"><div class="v-word">新幹線</div><div class="v-kana">しんかんせん</div><div class="v-mean">新幹線</div></div>
+                <div class="vocab-card"><div class="v-word">バス</div><div class="v-mean">公車</div></div>
+                <div class="vocab-card"><div class="v-word">シャトルバス</div><div class="v-mean">接駁巴士</div></div>
+                <div class="vocab-card"><div class="v-word">モノレール</div><div class="v-mean">單軌列車</div></div>
+                <div class="vocab-card"><div class="v-word">タクシー</div><div class="v-mean">計程車</div></div>
+                <div class="vocab-card"><div class="v-word">船</div><div class="v-kana">ふね</div><div class="v-mean">船</div></div>
+                <div class="vocab-card"><div class="v-word">自転車</div><div class="v-kana">じてんしゃ</div><div class="v-mean">腳踏車</div></div>
+                <div class="vocab-card"><div class="v-word">飛行機</div><div class="v-kana">ひこうき</div><div class="v-mean">飛機</div></div>
+                <div class="vocab-card"><div class="v-word">切符</div><div class="v-kana">きっぷ</div><div class="v-mean">票</div></div>
+                <div class="vocab-card"><div class="v-word">改札</div><div class="v-kana">かいさつ</div><div class="v-mean">剪票口</div></div>
+                <div class="vocab-card"><div class="v-word">ホーム</div><div class="v-mean">月台</div></div>
+                <div class="vocab-card"><div class="v-word">乗り換え</div><div class="v-kana">のりかえ</div><div class="v-mean">轉乘</div></div>
+                <div class="vocab-card"><div class="v-word">出口</div><div class="v-kana">でぐち</div><div class="v-mean">出口</div></div>
+                <div class="vocab-card"><div class="v-word">入口</div><div class="v-kana">いりぐち</div><div class="v-mean">入口</div></div>
+                <div class="vocab-card"><div class="v-word">東/西/南/北</div><div class="v-mean">東/西/南/北</div></div>
+                <div class="vocab-card"><div class="v-word">地図</div><div class="v-kana">ちず</div><div class="v-mean">地圖</div></div>
+                <div class="vocab-card"><div class="v-word">ホテル</div><div class="v-mean">飯店</div></div>
+                <div class="vocab-card"><div class="v-word">旅館</div><div class="v-kana">りょかん</div><div class="v-mean">日式旅館</div></div>
+                <div class="vocab-card"><div class="v-word">リゾート</div><div class="v-mean">度假村</div></div>
+                <div class="vocab-card"><div class="v-word">公園</div><div class="v-kana">こうえん</div><div class="v-mean">公園</div></div>
+                <div class="vocab-card"><div class="v-word">美術館</div><div class="v-kana">びじゅつかん</div><div class="v-mean">美術館</div></div>
+                <div class="vocab-card"><div class="v-word">映画館</div><div class="v-kana">えいがかん</div><div class="v-mean">電影院</div></div>
+                <div class="vocab-card"><div class="v-word">水族館</div><div class="v-kana">すいぞくかん</div><div class="v-mean">水族館</div></div>
+                <div class="vocab-card"><div class="v-word">動物園</div><div class="v-kana">どうぶつえん</div><div class="v-mean">動物園</div></div>
+                <div class="vocab-card"><div class="v-word">神社</div><div class="v-kana">じんじゃ</div><div class="v-mean">神社</div></div>
+                <div class="vocab-card"><div class="v-word">お寺</div><div class="v-kana">おてら</div><div class="v-mean">寺廟</div></div>
+                <div class="vocab-card"><div class="v-word">電気屋</div><div class="v-kana">でんきや</div><div class="v-mean">電器行</div></div>
+                <div class="vocab-card"><div class="v-word">本屋</div><div class="v-kana">ほんや</div><div class="v-mean">書店</div></div>
+                <div class="vocab-card"><div class="v-word">パン屋</div><div class="v-kana">パンや</div><div class="v-mean">麵包店</div></div>
+                <div class="vocab-card"><div class="v-word">薬局</div><div class="v-kana">やっきょく</div><div class="v-mean">藥局</div></div>
+            </div>
+        </section>
+
+        <section id="v-hobby">
+            <h2 class="section-title">娛樂、運動與學校</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">スポーツ</div><div class="v-mean">運動</div></div>
+                <div class="vocab-card"><div class="v-word">サッカー</div><div class="v-mean">足球</div></div>
+                <div class="vocab-card"><div class="v-word">野球</div><div class="v-kana">やきゅう</div><div class="v-mean">棒球</div></div>
+                <div class="vocab-card"><div class="v-word">テニス</div><div class="v-mean">網球</div></div>
+                <div class="vocab-card"><div class="v-word">水泳</div><div class="v-kana">すいえい</div><div class="v-mean">游泳</div></div>
+                <div class="vocab-card"><div class="v-word">バスケットボール</div><div class="v-mean">籃球</div></div>
+                <div class="vocab-card"><div class="v-word">バレーボール</div><div class="v-mean">排球</div></div>
+                <div class="vocab-card"><div class="v-word">柔道</div><div class="v-kana">じゅうどう</div><div class="v-mean">柔道</div></div>
+                <div class="vocab-card"><div class="v-word">空手</div><div class="v-kana">からて</div><div class="v-mean">空手道</div></div>
+                <div class="vocab-card"><div class="v-word">スキー</div><div class="v-mean">滑雪</div></div>
+                <div class="vocab-card"><div class="v-word">スケート</div><div class="v-mean">滑冰</div></div>
+                <div class="vocab-card"><div class="v-word">サーフィン</div><div class="v-mean">衝浪</div></div>
+                <div class="vocab-card"><div class="v-word">ヨガ</div><div class="v-mean">瑜珈</div></div>
+                <div class="vocab-card"><div class="v-word">ジム</div><div class="v-mean">健身房</div></div>
+                <div class="vocab-card"><div class="v-word">ハイキング</div><div class="v-mean">健行</div></div>
+                <div class="vocab-card"><div class="v-word">映画</div><div class="v-kana">えいが</div><div class="v-mean">電影</div></div>
+                <div class="vocab-card"><div class="v-word">音楽</div><div class="v-kana">おんがく</div><div class="v-mean">音樂</div></div>
+                <div class="vocab-card"><div class="v-word">ピアノ</div><div class="v-mean">鋼琴</div></div>
+                <div class="vocab-card"><div class="v-word">ギター</div><div class="v-mean">吉他</div></div>
+                <div class="vocab-card"><div class="v-word">歌</div><div class="v-kana">うた</div><div class="v-mean">歌</div></div>
+                <div class="vocab-card"><div class="v-word">カラオケ</div><div class="v-mean">卡拉OK</div></div>
+                <div class="vocab-card"><div class="v-word">ゲーム</div><div class="v-mean">遊戲</div></div>
+                <div class="vocab-card"><div class="v-word">漫画</div><div class="v-kana">まんが</div><div class="v-mean">漫畫</div></div>
+                <div class="vocab-card"><div class="v-word">アニメ</div><div class="v-mean">動漫</div></div>
+                <div class="vocab-card"><div class="v-word">本</div><div class="v-kana">ほん</div><div class="v-mean">書</div></div>
+                <div class="vocab-card"><div class="v-word">雑誌</div><div class="v-kana">ざっし</div><div class="v-mean">雜誌</div></div>
+                <div class="vocab-card"><div class="v-word">新聞</div><div class="v-kana">しんぶん</div><div class="v-mean">報紙</div></div>
+                <div class="vocab-card"><div class="v-word">旅行</div><div class="v-kana">りょこう</div><div class="v-mean">旅行</div></div>
+                <div class="vocab-card"><div class="v-word">買い物</div><div class="v-kana">かいもの</div><div class="v-mean">購物</div></div>
+                <div class="vocab-card"><div class="v-word">パーティー</div><div class="v-mean">派對</div></div>
+                <div class="vocab-card"><div class="v-word">デート</div><div class="v-mean">約會</div></div>
+                <div class="vocab-card"><div class="v-word">お祭り</div><div class="v-kana">おまつり</div><div class="v-mean">祭典</div></div>
+                <div class="vocab-card"><div class="v-word">花火</div><div class="v-kana">はなび</div><div class="v-mean">煙火</div></div>
+                <div class="vocab-card"><div class="v-word">花見</div><div class="v-kana">はなみ</div><div class="v-mean">賞花</div></div>
+                <div class="vocab-card"><div class="v-word">授業</div><div class="v-kana">じゅぎょう</div><div class="v-mean">課堂</div></div>
+                <div class="vocab-card"><div class="v-word">教室</div><div class="v-kana">きょうしつ</div><div class="v-mean">教室</div></div>
+                <div class="vocab-card"><div class="v-word">宿題</div><div class="v-kana">しゅくだい</div><div class="v-mean">作業</div></div>
+                <div class="vocab-card"><div class="v-word">テスト</div><div class="v-mean">考試</div></div>
+                <div class="vocab-card"><div class="v-word">質問</div><div class="v-kana">しつもん</div><div class="v-mean">問題</div></div>
+                <div class="vocab-card"><div class="v-word">専攻</div><div class="v-kana">せんこう</div><div class="v-mean">主修</div></div>
+                <div class="vocab-card"><div class="v-word">留学</div><div class="v-kana">りゅうがく</div><div class="v-mean">留學</div></div>
+                <div class="vocab-card"><div class="v-word">寮</div><div class="v-kana">りょう</div><div class="v-mean">宿舍</div></div>
+                <div class="vocab-card"><div class="v-word">サークル</div><div class="v-mean">社團</div></div>
+                <div class="vocab-card"><div class="v-word">ボランティア</div><div class="v-mean">志工</div></div>
+            </div>
+        </section>
+
+        <section id="v-nature">
+            <h2 class="section-title">自然與動植物</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">犬</div><div class="v-kana">いぬ</div><div class="v-mean">狗</div></div>
+                <div class="vocab-card"><div class="v-word">猫</div><div class="v-kana">ねこ</div><div class="v-mean">貓</div></div>
+                <div class="vocab-card"><div class="v-word">鳥</div><div class="v-kana">とり</div><div class="v-mean">鳥</div></div>
+                <div class="vocab-card"><div class="v-word">魚</div><div class="v-kana">さかな</div><div class="v-mean">魚</div></div>
+                <div class="vocab-card"><div class="v-word">鴨</div><div class="v-kana">カモ</div><div class="v-mean">鴨子</div></div>
+                <div class="vocab-card"><div class="v-word">兎</div><div class="v-kana">うさぎ</div><div class="v-mean">兔子</div></div>
+                <div class="vocab-card"><div class="v-word">猿</div><div class="v-kana">さる</div><div class="v-mean">猴子</div></div>
+                <div class="vocab-card"><div class="v-word">山羊</div><div class="v-kana">やぎ</div><div class="v-mean">山羊</div></div>
+                <div class="vocab-card"><div class="v-word">キリン</div><div class="v-mean">長頸鹿</div></div>
+                <div class="vocab-card"><div class="v-word">ライオン</div><div class="v-mean">獅子</div></div>
+                <div class="vocab-card"><div class="v-word">イルカ</div><div class="v-mean">海豚</div></div>
+                <div class="vocab-card"><div class="v-word">海亀</div><div class="v-kana">うみがめ</div><div class="v-mean">海龜</div></div>
+                <div class="vocab-card"><div class="v-word">ハムスター</div><div class="v-mean">倉鼠</div></div>
+                <div class="vocab-card"><div class="v-word">カメレオン</div><div class="v-mean">變色龍</div></div>
+                <div class="vocab-card"><div class="v-word">ゴキブリ</div><div class="v-mean">蟑螂</div></div>
+                <div class="vocab-card"><div class="v-word">ペット</div><div class="v-mean">寵物</div></div>
+                <div class="vocab-card"><div class="v-word">山</div><div class="v-kana">やま</div><div class="v-mean">山</div></div>
+                <div class="vocab-card"><div class="v-word">川</div><div class="v-kana">かわ</div><div class="v-mean">河</div></div>
+                <div class="vocab-card"><div class="v-word">海</div><div class="v-kana">うみ</div><div class="v-mean">海</div></div>
+                <div class="vocab-card"><div class="v-word">湖</div><div class="v-kana">みずうみ</div><div class="v-mean">湖</div></div>
+                <div class="vocab-card"><div class="v-word">池</div><div class="v-kana">いけ</div><div class="v-mean">池塘</div></div>
+                <div class="vocab-card"><div class="v-word">森</div><div class="v-kana">もり</div><div class="v-mean">森林</div></div>
+                <div class="vocab-card"><div class="v-word">木</div><div class="v-kana">き</div><div class="v-mean">樹</div></div>
+                <div class="vocab-card"><div class="v-word">花</div><div class="v-kana">はな</div><div class="v-mean">花</div></div>
+                <div class="vocab-card"><div class="v-word">桜</div><div class="v-kana">さくら</div><div class="v-mean">櫻花</div></div>
+                <div class="vocab-card"><div class="v-word">雨</div><div class="v-kana">あめ</div><div class="v-mean">雨</div></div>
+                <div class="vocab-card"><div class="v-word">雪</div><div class="v-kana">ゆき</div><div class="v-mean">雪</div></div>
+                <div class="vocab-card"><div class="v-word">曇り</div><div class="v-kana">くもり</div><div class="v-mean">陰天</div></div>
+                <div class="vocab-card"><div class="v-word">晴れ</div><div class="v-kana">はれ</div><div class="v-mean">晴天</div></div>
+                <div class="vocab-card"><div class="v-word">天気</div><div class="v-kana">てんき</div><div class="v-mean">天氣</div></div>
+                <div class="vocab-card"><div class="v-word">景色</div><div class="v-kana">けしき</div><div class="v-mean">風景</div></div>
+            </div>
+        </section>
+
+        <section id="v-verbs">
+            <h2 class="section-title">動詞總表</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">食べる</div><div class="v-kana">たべる</div><div class="v-mean">吃</div></div>
+                <div class="vocab-card"><div class="v-word">飲む</div><div class="v-kana">のむ</div><div class="v-mean">喝</div></div>
+                <div class="vocab-card"><div class="v-word">見る</div><div class="v-kana">みる</div><div class="v-mean">看</div></div>
+                <div class="vocab-card"><div class="v-word">聞く</div><div class="v-kana">きく</div><div class="v-mean">聽</div></div>
+                <div class="vocab-card"><div class="v-word">読む</div><div class="v-kana">よむ</div><div class="v-mean">讀</div></div>
+                <div class="vocab-card"><div class="v-word">書く</div><div class="v-kana">かく</div><div class="v-mean">寫</div></div>
+                <div class="vocab-card"><div class="v-word">話す</div><div class="v-kana">はなす</div><div class="v-mean">說</div></div>
+                <div class="vocab-card"><div class="v-word">買う</div><div class="v-kana">かう</div><div class="v-mean">買</div></div>
+                <div class="vocab-card"><div class="v-word">行く</div><div class="v-kana">いく</div><div class="v-mean">去</div></div>
+                <div class="vocab-card"><div class="v-word">来る</div><div class="v-kana">くる</div><div class="v-mean">來</div></div>
+                <div class="vocab-card"><div class="v-word">帰る</div><div class="v-kana">かえる</div><div class="v-mean">回家</div></div>
+                <div class="vocab-card"><div class="v-word">寝る</div><div class="v-kana">ねる</div><div class="v-mean">睡</div></div>
+                <div class="vocab-card"><div class="v-word">起きる</div><div class="v-kana">おきる</div><div class="v-mean">起床</div></div>
+                <div class="vocab-card"><div class="v-word">会う</div><div class="v-kana">あう</div><div class="v-mean">見面</div></div>
+                <div class="vocab-card"><div class="v-word">遊ぶ</div><div class="v-kana">あそぶ</div><div class="v-mean">玩</div></div>
+                <div class="vocab-card"><div class="v-word">働く</div><div class="v-kana">はたらく</div><div class="v-mean">工作</div></div>
+                <div class="vocab-card"><div class="v-word">勉強する</div><div class="v-kana">べんきょうする</div><div class="v-mean">唸書</div></div>
+                <div class="vocab-card"><div class="v-word">練習する</div><div class="v-kana">れんしゅうする</div><div class="v-mean">練習</div></div>
+                <div class="vocab-card"><div class="v-word">作る</div><div class="v-kana">つくる</div><div class="v-mean">製作/做菜</div></div>
+                <div class="vocab-card"><div class="v-word">使う</div><div class="v-kana">つかう</div><div class="v-mean">使用</div></div>
+                <div class="vocab-card"><div class="v-word">開ける</div><div class="v-kana">あける</div><div class="v-mean">打開</div></div>
+                <div class="vocab-card"><div class="v-word">借りる</div><div class="v-kana">かりる</div><div class="v-mean">借</div></div>
+                <div class="vocab-card"><div class="v-word">電話する</div><div class="v-kana">でんわする</div><div class="v-mean">打電話</div></div>
+                <div class="vocab-card"><div class="v-word">メールする</div><div class="v-mean">傳郵件</div></div>
+                <div class="vocab-card"><div class="v-word">調べる</div><div class="v-kana">しらべる</div><div class="v-mean">查詢</div></div>
+                <div class="vocab-card"><div class="v-word">予約する</div><div class="v-kana">よやくする</div><div class="v-mean">預約</div></div>
+                <div class="vocab-card"><div class="v-word">キャンセルする</div><div class="v-mean">取消</div></div>
+                <div class="vocab-card"><div class="v-word">紹介する</div><div class="v-kana">しょうかいする</div><div class="v-mean">介紹</div></div>
+                <div class="vocab-card"><div class="v-word">頑張る</div><div class="v-kana">がんばる</div><div class="v-mean">努力</div></div>
+                <div class="vocab-card"><div class="v-word">怒る</div><div class="v-kana">おこる</div><div class="v-mean">生氣</div></div>
+                <div class="vocab-card"><div class="v-word">壊れる</div><div class="v-kana">こわれる</div><div class="v-mean">壞掉</div></div>
+                <div class="vocab-card"><div class="v-word">住む</div><div class="v-kana">すむ</div><div class="v-mean">住</div></div>
+                <div class="vocab-card"><div class="v-word">洗う</div><div class="v-kana">あらう</div><div class="v-mean">洗</div></div>
+                <div class="vocab-card"><div class="v-word">渡る</div><div class="v-kana">わたる</div><div class="v-mean">過(橋/路)</div></div>
+                <div class="vocab-card"><div class="v-word">泳ぐ</div><div class="v-kana">およぐ</div><div class="v-mean">游泳</div></div>
+                <div class="vocab-card"><div class="v-word">走る</div><div class="v-kana">はしる</div><div class="v-mean">跑</div></div>
+                <div class="vocab-card"><div class="v-word">待つ</div><div class="v-kana">まつ</div><div class="v-mean">等</div></div>
+                <div class="vocab-card"><div class="v-word">着る</div><div class="v-kana">きる</div><div class="v-mean">穿(衣)</div></div>
+                <div class="vocab-card"><div class="v-word">履く</div><div class="v-kana">はく</div><div class="v-mean">穿(鞋/褲)</div></div>
+                <div class="vocab-card"><div class="v-word">被る</div><div class="v-kana">かぶる</div><div class="v-mean">戴(帽)</div></div>
+                <div class="vocab-card"><div class="v-word">乗る</div><div class="v-kana">のる</div><div class="v-mean">搭乘</div></div>
+                <div class="vocab-card"><div class="v-word">見つける</div><div class="v-kana">みつける</div><div class="v-mean">找到</div></div>
+                <div class="vocab-card"><div class="v-word">遅れる</div><div class="v-kana">おくれる</div><div class="v-mean">遲到</div></div>
+                <div class="vocab-card"><div class="v-word">咲く</div><div class="v-kana">さく</div><div class="v-mean">開花</div></div>
+                <div class="vocab-card"><div class="v-word">撫でる</div><div class="v-kana">なでる</div><div class="v-mean">撫摸</div></div>
+                <div class="vocab-card"><div class="v-word">踊る</div><div class="v-kana">おどる</div><div class="v-mean">跳舞</div></div>
+                <div class="vocab-card"><div class="v-word">始まる</div><div class="v-kana">はじまる</div><div class="v-mean">開始</div></div>
+                <div class="vocab-card"><div class="v-word">終わる</div><div class="v-kana">おわる</div><div class="v-mean">結束</div></div>
+                <div class="vocab-card"><div class="v-word">入る</div><div class="v-kana">はいる</div><div class="v-mean">進入</div></div>
+                <div class="vocab-card"><div class="v-word">切る</div><div class="v-kana">きる</div><div class="v-mean">切</div></div>
+                <div class="vocab-card"><div class="v-word">歌う</div><div class="v-kana">うたう</div><div class="v-mean">唱</div></div>
+                <div class="vocab-card"><div class="v-word">つける</div><div class="v-mean">打開(電器)</div></div>
+            </div>
+        </section>
+
+        <section id="v-adj">
+            <h2 class="section-title">形容詞與狀態</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">大きい/小さい</div><div class="v-kana">おおきい/ちいさい</div><div class="v-mean">大/小</div></div>
+                <div class="vocab-card"><div class="v-word">高い/安い</div><div class="v-kana">たかい/やすい</div><div class="v-mean">貴/便宜</div></div>
+                <div class="vocab-card"><div class="v-word">新しい/古い</div><div class="v-kana">あたらしい/ふるい</div><div class="v-mean">新/舊</div></div>
+                <div class="vocab-card"><div class="v-word">いい/悪い</div><div class="v-kana">いい/わるい</div><div class="v-mean">好/壞</div></div>
+                <div class="vocab-card"><div class="v-word">多い/少ない</div><div class="v-kana">おおい/すくない</div><div class="v-mean">多/少</div></div>
+                <div class="vocab-card"><div class="v-word">近い/遠い</div><div class="v-kana">ちかい/とおい</div><div class="v-mean">近/遠</div></div>
+                <div class="vocab-card"><div class="v-word">暑い/寒い</div><div class="v-kana">あつい/さむい</div><div class="v-mean">熱/冷(氣溫)</div></div>
+                <div class="vocab-card"><div class="v-word">熱い/冷たい</div><div class="v-kana">あつい/つめたい</div><div class="v-mean">燙/冰(物體)</div></div>
+                <div class="vocab-card"><div class="v-word">ぬるい</div><div class="v-mean">溫的(不夠熱)</div></div>
+                <div class="vocab-card"><div class="v-word">明るい/暗い</div><div class="v-kana">あかるい/くらい</div><div class="v-mean">亮/暗</div></div>
+                <div class="vocab-card"><div class="v-word">広い/狭い</div><div class="v-kana">ひろい/せまい</div><div class="v-mean">寬/窄</div></div>
+                <div class="vocab-card"><div class="v-word">重い/軽い</div><div class="v-kana">おもい/かるい</div><div class="v-mean">重/輕</div></div>
+                <div class="vocab-card"><div class="v-word">厚い/薄い</div><div class="v-kana">あつい/うすい</div><div class="v-mean">厚/薄</div></div>
+                <div class="vocab-card"><div class="v-word">強い/弱い</div><div class="v-kana">つよい/よわい</div><div class="v-mean">強/弱</div></div>
+                <div class="vocab-card"><div class="v-word">長い/短い</div><div class="v-kana">ながい/みじかい</div><div class="v-mean">長/短</div></div>
+                <div class="vocab-card"><div class="v-word">速い/遅い</div><div class="v-kana">はやい/おそい</div><div class="v-mean">快/慢</div></div>
+                <div class="vocab-card"><div class="v-word">美味しい/不味い</div><div class="v-kana">おいしい/まずい</div><div class="v-mean">好吃/難吃</div></div>
+                <div class="vocab-card"><div class="v-word">甘い/辛い</div><div class="v-kana">あまい/からい</div><div class="v-mean">甜/辣(鹹)</div></div>
+                <div class="vocab-card"><div class="v-word">苦い/酸っぱい</div><div class="v-kana">にがい/すっぱい</div><div class="v-mean">苦/酸</div></div>
+                <div class="vocab-card"><div class="v-word">しょっぱい</div><div class="v-mean">鹹</div></div>
+                <div class="vocab-card"><div class="v-word">新鮮</div><div class="v-kana">しんせん</div><div class="v-mean">新鮮</div></div>
+                <div class="vocab-card"><div class="v-word">難しい/易しい</div><div class="v-kana">むずかしい/やさしい</div><div class="v-mean">難/簡單</div></div>
+                <div class="vocab-card"><div class="v-word">忙しい/暇</div><div class="v-kana">いそがしい/ひま</div><div class="v-mean">忙/閒</div></div>
+                <div class="vocab-card"><div class="v-word">楽しい/つまらない</div><div class="v-kana">たのしい/つまらない</div><div class="v-mean">有趣/無聊</div></div>
+                <div class="vocab-card"><div class="v-word">好き/嫌い</div><div class="v-kana">すき/きらい</div><div class="v-mean">喜歡/討厭</div></div>
+                <div class="vocab-card"><div class="v-word">上手/下手</div><div class="v-kana">じょうず/へた</div><div class="v-mean">擅長/不擅長</div></div>
+                <div class="vocab-card"><div class="v-word">綺麗/汚い</div><div class="v-kana">きれい/きたない</div><div class="v-mean">乾淨(漂亮)/髒</div></div>
+                <div class="vocab-card"><div class="v-word">静か/うるさい</div><div class="v-kana">しずか/うるさい</div><div class="v-mean">安靜/吵</div></div>
+                <div class="vocab-card"><div class="v-word">賑やか</div><div class="v-kana">にぎやか</div><div class="v-mean">熱鬧</div></div>
+                <div class="vocab-card"><div class="v-word">便利/不便</div><div class="v-kana">べんり/ふべん</div><div class="v-mean">方便/不便</div></div>
+                <div class="vocab-card"><div class="v-word">元気</div><div class="v-kana">げんき</div><div class="v-mean">有精神</div></div>
+                <div class="vocab-card"><div class="v-word">大丈夫</div><div class="v-kana">だいじょうぶ</div><div class="v-mean">沒問題</div></div>
+                <div class="vocab-card"><div class="v-word">真面目</div><div class="v-kana">まじめ</div><div class="v-mean">認真</div></div>
+                <div class="vocab-card"><div class="v-word">親切</div><div class="v-kana">しんせつ</div><div class="v-mean">親切</div></div>
+                <div class="vocab-card"><div class="v-word">立派</div><div class="v-kana">りっぱ</div><div class="v-mean">出色/氣派</div></div>
+                <div class="vocab-card"><div class="v-word">安全/危険</div><div class="v-kana">あんぜん/きけん</div><div class="v-mean">安全/危險</div></div>
+                <div class="vocab-card"><div class="v-word">同じ</div><div class="v-kana">おなじ</div><div class="v-mean">一樣</div></div>
+                <div class="vocab-card"><div class="v-word">色々</div><div class="v-kana">いろいろ</div><div class="v-mean">各種各樣</div></div>
+                <div class="vocab-card"><div class="v-word">結構</div><div class="v-kana">けっこう</div><div class="v-mean">足夠/相當</div></div>
+                <div class="vocab-card"><div class="v-word">他</div><div class="v-kana">ほか</div><div class="v-mean">其他</div></div>
+                <div class="vocab-card"><div class="v-word">ベタベタ</div><div class="v-mean">黏糊糊</div></div>
+                <div class="vocab-card"><div class="v-word">キラキラ</div><div class="v-mean">閃閃發光</div></div>
+                <div class="vocab-card"><div class="v-word">ふわふわ</div><div class="v-mean">鬆軟</div></div>
+                <div class="vocab-card"><div class="v-word">ボロボロ</div><div class="v-mean">破舊不堪</div></div>
+                <div class="vocab-card"><div class="v-word">油っこい</div><div class="v-kana">あぶらっこい</div><div class="v-mean">油膩</div></div>
+                <div class="vocab-card"><div class="v-word">手作り</div><div class="v-kana">てづくり</div><div class="v-mean">手工製作</div></div>
+                <div class="vocab-card"><div class="v-word">健康的</div><div class="v-kana">けんこうてき</div><div class="v-mean">健康的</div></div>
+                <div class="vocab-card"><div class="v-word">素敵</div><div class="v-kana">すてき</div><div class="v-mean">極好/漂亮</div></div>
+                <div class="vocab-card"><div class="v-word">大変</div><div class="v-kana">たいへん</div><div class="v-mean">辛苦/嚴重</div></div>
+                <div class="vocab-card"><div class="v-word">眠い</div><div class="v-kana">ねむい</div><div class="v-mean">睏</div></div>
+                <div class="vocab-card"><div class="v-word">痛い</div><div class="v-kana">いたい</div><div class="v-mean">痛</div></div>
+                <div class="vocab-card"><div class="v-word">暖かい</div><div class="v-kana">あたたかい</div><div class="v-mean">溫暖(氣候)</div></div>
+                <div class="vocab-card"><div class="v-word">涼しい</div><div class="v-kana">すずしい</div><div class="v-mean">涼爽</div></div>
+                <div class="vocab-card"><div class="v-word">黒い</div><div class="v-kana">くろい</div><div class="v-mean">黑色的</div></div>
+                <div class="vocab-card"><div class="v-word">白い</div><div class="v-kana">しろい</div><div class="v-mean">白色的</div></div>
+                <div class="vocab-card"><div class="v-word">赤い</div><div class="v-kana">あかい</div><div class="v-mean">紅色的</div></div>
+                <div class="vocab-card"><div class="v-word">青い</div><div class="v-kana">あおい</div><div class="v-mean">藍色的</div></div>
+                <div class="vocab-card"><div class="v-word">黄色</div><div class="v-kana">きいろ</div><div class="v-mean">黃色</div></div>
+                <div class="vocab-card"><div class="v-word">茶色</div><div class="v-kana">ちゃいろ</div><div class="v-mean">棕色</div></div>
+                <div class="vocab-card"><div class="v-word">緑</div><div class="v-kana">みどり</div><div class="v-mean">綠色</div></div>
+                <div class="vocab-card"><div class="v-word">ピンク</div><div class="v-mean">粉紅色</div></div>
+                <div class="vocab-card"><div class="v-word">紫</div><div class="v-kana">むらさき</div><div class="v-mean">紫色</div></div>
+                <div class="vocab-card"><div class="v-word">グレー</div><div class="v-mean">灰色</div></div>
+            </div>
+        </section>
+
+        <section id="v-abstract">
+            <h2 class="section-title">副詞與其他</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card"><div class="v-word">とても</div><div class="v-mean">非常</div></div>
+                <div class="vocab-card"><div class="v-word">まあまあ</div><div class="v-mean">還好/普通</div></div>
+                <div class="vocab-card"><div class="v-word">全然</div><div class="v-kana">ぜんぜん</div><div class="v-mean">完全(不)</div></div>
+                <div class="vocab-card"><div class="v-word">少し</div><div class="v-kana">すこし</div><div class="v-mean">一點</div></div>
+                <div class="vocab-card"><div class="v-word">ちょっと</div><div class="v-mean">稍微/有點</div></div>
+                <div class="vocab-card"><div class="v-word">たくさん</div><div class="v-mean">很多</div></div>
+                <div class="vocab-card"><div class="v-word">全部で</div><div class="v-kana">ぜんぶで</div><div class="v-mean">總共</div></div>
+                <div class="vocab-card"><div class="v-word">一番</div><div class="v-kana">いちばん</div><div class="v-mean">最</div></div>
+                <div class="vocab-card"><div class="v-word">もっと</div><div class="v-mean">更</div></div>
+                <div class="vocab-card"><div class="v-word">もう</div><div class="v-mean">已經</div></div>
+                <div class="vocab-card"><div class="v-word">まだ</div><div class="v-mean">還/尚未</div></div>
+                <div class="vocab-card"><div class="v-word">いつも</div><div class="v-mean">總是</div></div>
+                <div class="vocab-card"><div class="v-word">よく</div><div class="v-mean">經常/很好地</div></div>
+                <div class="vocab-card"><div class="v-word">時々</div><div class="v-kana">ときどき</div><div class="v-mean">有時</div></div>
+                <div class="vocab-card"><div class="v-word">あまり</div><div class="v-mean">不太(接否定)</div></div>
+                <div class="vocab-card"><div class="v-word">早く</div><div class="v-kana">はやく</div><div class="v-mean">早/快</div></div>
+                <div class="vocab-card"><div class="v-word">遅く</div><div class="v-kana">おそく</div><div class="v-mean">晚/慢</div></div>
+                <div class="vocab-card"><div class="v-word">本当に</div><div class="v-kana">ほんとうに</div><div class="v-mean">真的</div></div>
+                <div class="vocab-card"><div class="v-word">必ず</div><div class="v-kana">かならず</div><div class="v-mean">一定/必定</div></div>
+                <div class="vocab-card"><div class="v-word">多分</div><div class="v-kana">たぶん</div><div class="v-mean">大概/可能</div></div>
+                <div class="vocab-card"><div class="v-word">大体</div><div class="v-kana">だいたい</div><div class="v-mean">大致上</div></div>
+                <div class="vocab-card"><div class="v-word">そろそろ</div><div class="v-mean">差不多該...</div></div>
+                <div class="vocab-card"><div class="v-word">もうすぐ</div><div class="v-mean">很快/即將</div></div>
+                <div class="vocab-card"><div class="v-word">まず</div><div class="v-mean">首先</div></div>
+                <div class="vocab-card"><div class="v-word">次に</div><div class="v-kana">つぎに</div><div class="v-mean">接著</div></div>
+                <div class="vocab-card"><div class="v-word">そして</div><div class="v-mean">然後</div></div>
+                <div class="vocab-card"><div class="v-word">それから</div><div class="v-mean">然後/還有</div></div>
+                <div class="vocab-card"><div class="v-word">でも</div><div class="v-mean">但是</div></div>
+                <div class="vocab-card"><div class="v-word">だから</div><div class="v-mean">所以</div></div>
+                <div class="vocab-card"><div class="v-word">もし</div><div class="v-mean">如果</div></div>
+                <div class="vocab-card"><div class="v-word">こんにちは</div><div class="v-mean">你好</div></div>
+                <div class="vocab-card"><div class="v-word">こんばんは</div><div class="v-mean">晚上好</div></div>
+                <div class="vocab-card"><div class="v-word">おはよう</div><div class="v-mean">早安</div></div>
+                <div class="vocab-card"><div class="v-word">さようなら</div><div class="v-mean">再見</div></div>
+                <div class="vocab-card"><div class="v-word">ありがとう</div><div class="v-mean">謝謝</div></div>
+                <div class="vocab-card"><div class="v-word">すみません</div><div class="v-mean">對不起/不好意思</div></div>
+                <div class="vocab-card"><div class="v-word">ごめんなさい</div><div class="v-mean">抱歉</div></div>
+                <div class="vocab-card"><div class="v-word">はい</div><div class="v-mean">是</div></div>
+                <div class="vocab-card"><div class="v-word">いいえ</div><div class="v-mean">不/不是</div></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+                if(window.innerWidth <= 900) {
+                    document.querySelector('.sidebar').classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
