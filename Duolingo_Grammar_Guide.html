@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duolingo 日文語法核心大全</title>
+    <style>
+        :root {
+            --primary: #ce82ff; /* Grammar Purple */
+            --primary-dark: #a561d1;
+            --secondary: #2b70c9;
+            --text: #3c3c3c;
+            --bg: #fdfdfd;
+            --sidebar-width: 260px;
+            --border: #e0e0e0;
+            --code-bg: #f4f6f8;
+            --red: #ff4b4b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            background-color: var(--bg);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Ruby Text Styling */
+        ruby { ruby-position: over; }
+        rt { color: var(--secondary); font-size: 0.6em; }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: #f8f9fa;
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            padding: 20px 0;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .sidebar h2 {
+            padding: 0 20px;
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 12px 20px;
+            color: #555;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+            font-size: 0.95rem;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: #f3e5f5;
+            color: var(--primary-dark);
+            border-left-color: var(--primary);
+            font-weight: bold;
+        }
+
+        .nav-group {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            padding: 15px 20px 5px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px 60px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 40px;
+        }
+        section:last-child { border-bottom: none; }
+
+        h1.page-title {
+            font-size: 2.2rem;
+            color: var(--text);
+            border-bottom: 5px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+
+        h2.section-title {
+            font-size: 1.6rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            background: #f3e5f5;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        h3 {
+            color: #444;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-left: 5px solid var(--secondary);
+            padding-left: 10px;
+        }
+
+        /* Grammar Cards */
+        .grammar-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .pattern-box {
+            background: var(--code-bg);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin-bottom: 15px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1rem;
+            color: #333;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .explanation {
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) { background-color: #fafafa; }
+
+        /* Example Lists */
+        .example-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .example-item {
+            margin-bottom: 12px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .jp { font-weight: bold; font-size: 1.1rem; color: #333; }
+        .cn { font-size: 0.9rem; color: #666; margin-top: 2px; }
+
+        /* Highlights */
+        .hl { color: var(--primary-dark); font-weight: bold; background: #f3e5f5; padding: 0 4px; border-radius: 3px; }
+        .particle { color: white; background-color: var(--secondary); padding: 1px 6px; border-radius: 10px; font-size: 0.8rem; vertical-align: middle; margin: 0 2px; }
+        .tag { display: inline-block; padding: 2px 8px; background: #eee; border-radius: 4px; font-size: 0.8rem; color: #555; margin-right: 5px; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; }
+            .menu-toggle { display: block; position: fixed; top: 10px; right: 10px; z-index: 1000; background: var(--primary); color: white; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
+        }
+        @media (min-width: 901px) { .menu-toggle { display: none; } }
+    </style>
+</head>
+<body>
+
+    <div class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ 目錄</div>
+
+    <nav class="sidebar">
+        <h2>文法核心大全</h2>
+        
+        <div class="nav-group">基礎篇</div>
+        <a href="#g1" class="nav-item">1. 肯定、否定與疑問</a>
+        <a href="#g2" class="nav-item">2. 指示詞 (こそあど)</a>
+        <a href="#g3" class="nav-item">3. 存在句 (有/在)</a>
+        
+        <div class="nav-group">動詞篇</div>
+        <a href="#g4" class="nav-item">4. 動詞時態變化表</a>
+        <a href="#g5" class="nav-item">5. 助詞大解析 (は/が/を/に/で)</a>
+        <a href="#g6" class="nav-item">6. 移動動詞句型</a>
+        <a href="#g7" class="nav-item">7. 授受表現 (給/收)</a>
+        
+        <div class="nav-group">進階篇</div>
+        <a href="#g8" class="nav-item">8. 形容詞完整變化</a>
+        <a href="#g9" class="nav-item">9. 請求與進行 (て形)</a>
+        <a href="#g10" class="nav-item">10. 願望與能力</a>
+        <a href="#g11" class="nav-item">11. 比較級與最高級</a>
+    </nav>
+
+    <main class="main-content">
+        <h1 class="page-title">日文語法結構解析</h1>
+
+        <!-- SECTION 1 -->
+        <section id="g1">
+            <h2 class="section-title">1. 基礎句型結構</h2>
+            
+            <div class="grammar-card">
+                <h3>肯定句 (Affirmative)</h3>
+                <div class="pattern-box">A <span class="particle">は</span> B です。</div>
+                <p class="explanation">最基本的「A 是 B」。助詞「は」標記主題，發音讀作 <strong>wa</strong>。</p>
+                <ul class="example-list">
+                    <li class="example-item">
+                        <div class="jp"><ruby>私<rt>わたし</rt></ruby><span class="particle">は</span><ruby>田<rt>た</rt>中<rt>なか</rt></ruby>です。</div>
+                        <div class="cn">我是田中。</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="grammar-card">
+                <h3>否定句 (Negative)</h3>
+                <div class="pattern-box">A <span class="particle">は</span> B じゃありません。</div>
+                <p class="explanation">口語常用「じゃありません」，正式場合用「ではありません」。</p>
+                <ul class="example-list">
+                    <li class="example-item">
+                        <div class="jp"><ruby>私<rt>わたし</rt></ruby><span class="particle">は</span><ruby>学<rt>がく</rt>生<rt>せい</rt></ruby>じゃありません。</div>
+                        <div class="cn">我不是學生。</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="grammar-card">
+                <h3>疑問句 (Question)</h3>
+                <div class="pattern-box">句子 + <span class="particle">か</span>。</div>
+                <p class="explanation">日文不需要問號「?」，句尾加「か」即表示疑問。</p>
+                <ul class="example-list">
+                    <li class="example-item">
+                        <div class="jp"><ruby>日<rt>に</rt>本<rt>ほん</rt>人<rt>じん</rt></ruby>です<span class="particle">か</span>。</div>
+                        <div class="cn">是日本人嗎？</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="grammar-card">
+                <h3>所有格 (Possessive)</h3>
+                <div class="pattern-box">名詞 A <span class="particle">の</span> 名詞 B</div>
+                <p class="explanation">表示「A 的 B」。不僅是所有權，也可以表示屬性（如：日語的老師）。</p>
+                <ul class="example-list">
+                    <li class="example-item">
+                        <div class="jp"><ruby>私<rt>わたし</rt></ruby><span class="particle">の</span><ruby>本<rt>ほん</rt></ruby></div>
+                        <div class="cn">我的書</div>
+                    </li>
+                    <li class="example-item">
+                        <div class="jp"><ruby>日<rt>に</rt>本<rt>ほん</rt>語<rt>ご</rt></ruby><span class="particle">の</span><ruby>先<rt>せん</rt>生<rt>せい</rt></ruby></div>
+                        <div class="cn">日語老師 (日語的老師)</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section id="g2">
+            <h2 class="section-title">2. 指示代名詞 (Ko-so-a-do)</h2>
+            <p class="explanation">日文的指示詞分為四組，依據與說話者/聽話者的距離而定。</p>
+            
+            <table>
+                <tr>
+                    <th>系列</th>
+                    <th>距離概念</th>
+                    <th>物品 (這/那)</th>
+                    <th>場所 (這裡/那裡)</th>
+                    <th>連體詞 (+名詞)</th>
+                </tr>
+                <tr>
+                    <td><strong>こ (Ko)</strong></td>
+                    <td>近稱 (在我這)</td>
+                    <td>これ (這個)</td>
+                    <td>ここ (這裡)</td>
+                    <td>この + 書</td>
+                </tr>
+                <tr>
+                    <td><strong>そ (So)</strong></td>
+                    <td>中稱 (在你那)</td>
+                    <td>それ (那個)</td>
+                    <td>そこ (那裡)</td>
+                    <td>その + 書</td>
+                </tr>
+                <tr>
+                    <td><strong>あ (A)</strong></td>
+                    <td>遠稱 (在遠方)</td>
+                    <td>あれ (那個)</td>
+                    <td>あそこ (那裡)</td>
+                    <td>あの + 書</td>
+                </tr>
+                <tr>
+                    <td><strong>ど (Do)</strong></td>
+                    <td>疑問 (在哪)</td>
+                    <td>どれ (哪個)</td>
+                    <td>どこ (哪裡)</td>
+                    <td>どの + 書</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section id="g3">
+            <h2 class="section-title">3. 存在句 (有/在)</h2>
+            
+            <div class="grammar-card">
+                <div class="pattern-box">地點 <span class="particle">に</span> 物品/人 <span class="particle">が</span> あります/います</div>
+                
+                <p class="explanation"><strong>重要規則：</strong>日文區分「有生命」與「無生命」。</p>
+                <ul>
+                    <li><strong>あります (Arimasu)：</strong>植物、物品、無生命物體。</li>
+                    <li><strong>います (Imasu)：</strong>人、動物、有生命物體。</li>
+                </ul>
+
+                <ul class="example-list">
+                    <li class="example-item">
+                        <div class="jp"><ruby>部<rt>へ</rt>屋<rt>や</rt></ruby><span class="particle">に</span>テレビ<span class="particle">が</span>あります。</div>
+                        <div class="cn">房間裡有電視。(物品)</div>
+                    </li>
+                    <li class="example-item">
+                        <div class="jp"><ruby>公<rt>こう</rt>園<rt>えん</rt></ruby><span class="particle">に</span><ruby>犬<rt>いぬ</rt></ruby><span class="particle">が</span>います。</div>
+                        <div class="cn">公園裡有狗。(生物)</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section id="g4">
+            <h2 class="section-title">4. 動詞時態變化表 (Masu形)</h2>
+            <p class="explanation">這是日文最常用的禮貌體（丁寧体）。</p>
+
+            <table>
+                <tr>
+                    <th>時態</th>
+                    <th>變化規則</th>
+                    <th>例：食べます (吃)</th>
+                    <th>例：行きます (去)</th>
+                </tr>
+                <tr>
+                    <td><strong>現在/未來 (做)</strong></td>
+                    <td>〜ます</td>
+                    <td><ruby>食<rt>た</rt></ruby>べます</td>
+                    <td><ruby>行<rt>い</rt></ruby>きます</td>
+                </tr>
+                <tr>
+                    <td><strong>現在否定 (不做)</strong></td>
+                    <td>〜ません</td>
+                    <td><ruby>食<rt>た</rt></ruby>べません</td>
+                    <td><ruby>行<rt>い</rt></ruby>きません</td>
+                </tr>
+                <tr>
+                    <td><strong>過去 (做了)</strong></td>
+                    <td>〜ました</td>
+                    <td><ruby>食<rt>た</rt></ruby>べ<span class="hl">ました</span></td>
+                    <td><ruby>行<rt>い</rt></ruby>き<span class="hl">ました</span></td>
+                </tr>
+                <tr>
+                    <td><strong>過去否定 (沒做)</strong></td>
+                    <td>〜ませんでした</td>
+                    <td><ruby>食<rt>た</rt></ruby>べ<span class="hl">ませんでした</span></td>
+                    <td><ruby>行<rt>い</rt></ruby>き<span class="hl">ませんでした</span></td>
+                </tr>
+                <tr>
+                    <td><strong>邀約 (一起吧)</strong></td>
+                    <td>〜ましょう</td>
+                    <td><ruby>食<rt>た</rt></ruby>べ<span class="hl">ましょう</span></td>
+                    <td><ruby>行<rt>い</rt></ruby>き<span class="hl">ましょう</span></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section id="g5">
+            <h2 class="section-title">5. 助詞大解析</h2>
+            <p class="explanation">助詞決定了句子的意思，是用錯最容易誤解的地方。</p>
+
+            <div class="grammar-card">
+                <h3><span class="particle">を</span> (o) - 動作對象</h3>
+                <p>標記動詞作用的對象（受詞）。</p>
+                <div class="jp"><ruby>水<rt>みず</rt></ruby><span class="particle">を</span><ruby>飲<rt>の</rt></ruby>みます。 (喝水)</div>
+            </div>
+
+            <div class="grammar-card">
+                <h3><span class="particle">で</span> (de) - 手段 / 發生地</h3>
+                <p>1. 工具/交通手段 (用...)。<br>2. 動作發生的場所 (在...)。</p>
+                <ul class="example-list">
+                    <li class="example-item"><ruby>箸<rt>はし</rt></ruby><span class="particle">で</span><ruby>食<rt>た</rt></ruby>べます。(用筷子吃)</li>
+                    <li class="example-item">バス<span class="particle">で</span><ruby>行<rt>い</rt></ruby>きます。(搭公車去)</li>
+                    <li class="example-item">レストラン<span class="particle">で</span><ruby>食<rt>た</rt></ruby>べます。(在餐廳吃)</li>
+                </ul>
+            </div>
+
+            <div class="grammar-card">
+                <h3><span class="particle">に</span> (ni) - 時間 / 目的地 / 存在點</h3>
+                <ul class="example-list">
+                    <li class="example-item"><strong>時間點：</strong><ruby>六<rt>ろく</rt>時<rt>じ</rt></ruby><span class="particle">に</span><ruby>起<rt>お</rt></ruby>きます。(六點起床)</li>
+                    <li class="example-item"><strong>目的地：</strong><ruby>日<rt>に</rt>本<rt>ほん</rt></ruby><span class="particle">に</span><ruby>行<rt>い</rt></ruby>きます。(去日本)</li>
+                    <li class="example-item"><strong>存在地：</strong>ここにあります。(在這裡)</li>
+                </ul>
+            </div>
+
+            <div class="grammar-card">
+                <h3><span class="particle">へ</span> (e) - 方向</h3>
+                <p>強調移動的方向，常可與「に」互換。</p>
+                <div class="jp"><ruby>家<rt>うち</rt></ruby><span class="particle">へ</span><ruby>帰<rt>かえ</rt></ruby>ります。(回家)</div>
+            </div>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section id="g6">
+            <h2 class="section-title">6. 移動動詞句型</h2>
+            <div class="pattern-box">(人) <span class="particle">は</span> (交通工具) <span class="particle">で</span> (場所) <span class="particle">へ</span> 行きます。</div>
+            <p class="explanation">這是一個非常經典的組合句型，包含了主題、手段與目的地。</p>
+            <ul class="example-list">
+                <li class="example-item">
+                    <div class="jp"><ruby>私<rt>わたし</rt></ruby><span class="particle">は</span><ruby>電<rt>でん</rt>車<rt>しゃ</rt></ruby><span class="particle">で</span><ruby>会<rt>かい</rt>社<rt>しゃ</rt></ruby><span class="particle">へ</span><ruby>行<rt>い</rt></ruby>きます。</div>
+                    <div class="cn">我搭電車去公司。</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section id="g7">
+            <h2 class="section-title">7. 授受表現 (給與收)</h2>
+            <p class="explanation">日文非常重視「物品的移動方向」。</p>
+
+            <div class="grammar-card">
+                <h3>あげます (Agemasu) - 我給別人</h3>
+                <div class="pattern-box"><ruby>私<rt>わたし</rt></ruby> <span class="particle">は</span> (人) <span class="particle">に</span> (物) <span class="particle">を</span> あげます。</div>
+                <div class="jp"><ruby>母<rt>はは</rt></ruby><span class="particle">に</span><ruby>花<rt>はな</rt></ruby><span class="particle">を</span>あげます。(給媽媽花)</div>
+            </div>
+
+            <div class="grammar-card">
+                <h3>もらいます (Moraimasu) - 我從別人那裡得到</h3>
+                <div class="pattern-box"><ruby>私<rt>わたし</rt></ruby> <span class="particle">は</span> (人) <span class="particle">に</span> (物) <span class="particle">を</span> もらいます。</div>
+                <div class="jp"><ruby>父<rt>ちち</rt></ruby><span class="particle">に</span><ruby>本<rt>ほん</rt></ruby><span class="particle">を</span>もらいました。(從爸爸那裡拿到書)</div>
+            </div>
+        </section>
+
+        <!-- SECTION 8 -->
+        <section id="g8">
+            <h2 class="section-title">8. 形容詞完整變化</h2>
+            <p class="explanation">形容詞分為兩類，變化方式完全不同，是初學者最大的痛點。</p>
+
+            <h3>(1) い形容詞 (以 i 結尾，如 暑い、大きい)</h3>
+            <table>
+                <tr>
+                    <th>變化</th>
+                    <th>規則</th>
+                    <th>例子 (暑い - 熱)</th>
+                </tr>
+                <tr><td>現在肯定</td><td>原型</td><td><ruby>暑<rt>あつ</rt></ruby>いです</td></tr>
+                <tr><td>現在否定</td><td>去い + くない</td><td><ruby>暑<rt>あつ</rt></ruby><span class="hl">くない</span>です</td></tr>
+                <tr><td>過去肯定</td><td>去い + かった</td><td><ruby>暑<rt>あつ</rt></ruby><span class="hl">かった</span>です</td></tr>
+                <tr><td>過去否定</td><td>去い + くなかった</td><td><ruby>暑<rt>あつ</rt></ruby><span class="hl">くなかった</span>です</td></tr>
+            </table>
+
+            <h3>(2) な形容詞 (名詞型，如 静か、きれい)</h3>
+            <table>
+                <tr>
+                    <th>變化</th>
+                    <th>規則</th>
+                    <th>例子 (静か - 安靜)</th>
+                </tr>
+                <tr><td>現在肯定</td><td>+ です</td><td><ruby>静<rt>しず</rt></ruby>か<span class="hl">です</span></td></tr>
+                <tr><td>現在否定</td><td>+ じゃありません</td><td><ruby>静<rt>しず</rt></ruby>か<span class="hl">じゃありません</span></td></tr>
+                <tr><td>過去肯定</td><td>+ でした</td><td><ruby>静<rt>しず</rt></ruby>か<span class="hl">でした</span></td></tr>
+                <tr><td>過去否定</td><td>+ じゃありませんでした</td><td><ruby>静<rt>しず</rt></ruby>か<span class="hl">じゃありませんでした</span></td></tr>
+            </table>
+        </section>
+
+        <!-- SECTION 9 -->
+        <section id="g9">
+            <h2 class="section-title">9. 請求與進行 (て形)</h2>
+            <p class="explanation">動詞的「て形 (Te-form)」是用來連接句子的重要變化。</p>
+
+            <div class="grammar-card">
+                <h3>(1) 請求做某事</h3>
+                <div class="pattern-box">動詞(て形) + <span class="particle">ください</span></div>
+                <ul class="example-list">
+                    <li class="example-item"><ruby>食<rt>た</rt></ruby>べ<span class="hl">て</span>ください。(請吃)</li>
+                    <li class="example-item"><ruby>待<rt>ま</rt></ruby>っ<span class="hl">て</span>ください。(請等)</li>
+                    <li class="example-item"><ruby>見<rt>み</rt></ruby><span class="hl">て</span>ください。(請看)</li>
+                </ul>
+            </div>
+
+            <div class="grammar-card">
+                <h3>(2) 正在做某事 (現在進行式)</h3>
+                <div class="pattern-box">動詞(て形) + <span class="particle">います</span></div>
+                <ul class="example-list">
+                    <li class="example-item"><ruby>今<rt>いま</rt></ruby>、ご<ruby>飯<rt>はん</rt></ruby>を<ruby>食<rt>た</rt></ruby>べ<span class="hl">ています</span>。(現在正在吃飯)</li>
+                    <li class="example-item"><ruby>待<rt>ま</rt></ruby>っ<span class="hl">ています</span>。(正在等)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 10 -->
+        <section id="g10">
+            <h2 class="section-title">10. 願望與能力</h2>
+            
+            <div class="grammar-card">
+                <h3>願望 (想要...)</h3>
+                <p>注意助詞通常使用「が」。</p>
+                <ul>
+                    <li><strong>物品：</strong><ruby>水<rt>みず</rt></ruby><span class="particle">が</span><ruby>欲<rt>ほ</rt></ruby>しいです。(我想要水)</li>
+                    <li><strong>動作：</strong><ruby>水<rt>みず</rt></ruby><span class="particle">が</span><ruby>飲<rt>の</rt></ruby>みたいです。(我想喝水) - *動詞ます形去ます+たい*</li>
+                </ul>
+            </div>
+
+            <div class="grammar-card">
+                <h3>能力 (會/能...)</h3>
+                <div class="pattern-box">名詞 + <span class="particle">が</span> できます</div>
+                <div class="pattern-box">動詞(字典形) + こと + <span class="particle">が</span> できます</div>
+                <ul class="example-list">
+                    <li class="example-item"><ruby>日<rt>に</rt>本<rt>ほん</rt>語<rt>ご</rt></ruby><span class="particle">が</span>できます。(會日文)</li>
+                    <li class="example-item"><ruby>泳<rt>およ</rt></ruby>ぐこと<span class="particle">が</span>できます。(會游泳)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 11 -->
+        <section id="g11">
+            <h2 class="section-title">11. 比較級與最高級</h2>
+            
+            <div class="grammar-card">
+                <h3>兩者比較 (A 比 B 更...)</h3>
+                <div class="pattern-box">A <span class="particle">のほうが</span> B <span class="particle">より</span> (形容詞) です。</div>
+                <div class="jp"><ruby>猫<rt>ねこ</rt></ruby><span class="particle">のほうが</span><ruby>犬<rt>いぬ</rt></ruby><span class="particle">より</span><ruby>好<rt>す</rt></ruby>きです。(比起狗，貓那邊我更喜歡 = 我喜歡貓 > 狗)</div>
+            </div>
+
+            <div class="grammar-card">
+                <h3>最高級 (在...之中最...)</h3>
+                <div class="pattern-box">(範圍) <span class="particle">で</span> (項目) <span class="particle">が</span> <span class="hl">一番</span> (形容詞) です。</div>
+                <div class="jp">スポーツ<span class="particle">で</span>サッカー<span class="particle">が</span><span class="hl">一番</span><ruby>面<rt>おも</rt>白<rt>しろ</rt></ruby>いです。(運動之中足球最有趣)</div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+                
+                if(window.innerWidth <= 900) {
+                    document.querySelector('.sidebar').classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
