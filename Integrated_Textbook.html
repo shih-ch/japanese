@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日文完全攻略 (句型+單字終極版)</title>
+    <title>Duolingo 日文完全攻略 (有聲發音版)</title>
     <style>
         :root {
             --primary: #58cc02;
@@ -230,6 +230,33 @@
         .hl { color: var(--primary-dark); font-weight: bold; background: #e8f5e9; padding: 0 4px; border-radius: 3px; }
         .particle { background: #eee; padding: 0 5px; border-radius: 4px; font-weight: bold; color: #555; margin: 0 2px; }
 
+        /* Speaker Button Styles */
+        .speak-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f7ff;
+            color: var(--secondary);
+            border: 1px solid #d0e3ff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            vertical-align: middle;
+            user-select: none;
+        }
+        .speak-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        .speak-btn:active {
+            transform: scale(0.95);
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
@@ -270,7 +297,7 @@
     </nav>
 
     <main class="main-content">
-        <h1 class="page-title">日文完全攻略：句型與單字整合版</h1>
+        <h1 class="page-title">日文完全攻略：有聲發音版</h1>
 
         <!-- ================= GRAMMAR SECTION ================= -->
         <section id="g-basic">
@@ -281,9 +308,11 @@
                 <div class="formula">肯定：A <span class="particle">は</span> B です。</div>
                 <div class="formula">否定：A <span class="particle">は</span> B じゃありません。</div>
                 <div class="formula">疑問：句子 + <span class="particle">か</span>。</div>
-                <p>例：<ruby>私<rt>わたし</rt></ruby><span class="particle">は</span><ruby>田<rt>た</rt>中<rt>なか</rt></ruby>です。(我是田中)<br>
-                   例：<ruby>学<rt>がく</rt>生<rt>せい</rt></ruby>じゃありません。(不是學生)<br>
-                   例：<ruby>日<rt>に</rt>本<rt>ほん</rt>人<rt>じん</rt></ruby>ですか。(是日本人嗎？)</p>
+                <ul class="example-list">
+                    <li class="example-item"><ruby>私<rt>わたし</rt></ruby><span class="particle">は</span><ruby>田<rt>た</rt>中<rt>なか</rt></ruby>です。(我是田中)</li>
+                    <li class="example-item"><ruby>学<rt>がく</rt>生<rt>せい</rt></ruby>じゃありません。(不是學生)</li>
+                    <li class="example-item"><ruby>日<rt>に</rt>本<rt>ほん</rt>人<rt>じん</rt></ruby>ですか。(是日本人嗎？)</li>
+                </ul>
             </div>
 
             <div class="grammar-box">
@@ -329,17 +358,17 @@
             <div class="grammar-box">
                 <h3>(1) 請求與禁止</h3>
                 <ul>
-                    <li><strong>請做...：</strong>動詞(て形) + <span class="particle">ください</span>。<br>例：<ruby>食<rt>た</rt></ruby>べてください。(請吃)</li>
-                    <li><strong>請不要做...：</strong>動詞(ない形) + <span class="particle">ないで</span> + <span class="particle">ください</span>。<br>例：<ruby>行<rt>い</rt></ruby>かないでください。(請不要走)</li>
+                    <li class="example-item"><strong>請做...：</strong>動詞(て形) + <span class="particle">ください</span>。<br>例：<ruby>食<rt>た</rt></ruby>べてください。(請吃)</li>
+                    <li class="example-item"><strong>請不要做...：</strong>動詞(ない形) + <span class="particle">ないで</span> + <span class="particle">ください</span>。<br>例：<ruby>行<rt>い</rt></ruby>かないでください。(請不要走)</li>
                 </ul>
                 <h3>(2) 現在進行式</h3>
                 <ul>
-                    <li><strong>正在做...：</strong>動詞(て形) + <span class="particle">います</span>。<br>例：<ruby>今<rt>いま</rt></ruby>、<ruby>勉<rt>べん</rt>強<rt>きょう</rt></ruby>しています。(現在正在唸書)</li>
+                    <li class="example-item"><strong>正在做...：</strong>動詞(て形) + <span class="particle">います</span>。<br>例：<ruby>今<rt>いま</rt></ruby>、<ruby>勉<rt>べん</rt>強<rt>きょう</rt></ruby>しています。(現在正在唸書)</li>
                 </ul>
                 <h3>(3) 願望 (想要...)</h3>
                 <ul>
-                    <li><strong>想要物品：</strong>名詞 + <span class="particle">が</span> + <ruby>欲<rt>ほ</rt></ruby>しいです。<br>例：<ruby>水<rt>みず</rt></ruby>がほしいです。(我想要水)</li>
-                    <li><strong>想要做動作：</strong>動詞(去ます) + <span class="particle">たい</span>です。<br>例：<ruby>水<rt>みず</rt></ruby>が<ruby>飲<rt>の</rt></ruby>みたいです。(我想喝水)</li>
+                    <li class="example-item"><strong>想要物品：</strong>名詞 + <span class="particle">が</span> + <ruby>欲<rt>ほ</rt></ruby>しいです。<br>例：<ruby>水<rt>みず</rt></ruby>がほしいです。(我想要水)</li>
+                    <li class="example-item"><strong>想要做動作：</strong>動詞(去ます) + <span class="particle">たい</span>です。<br>例：<ruby>水<rt>みず</rt></ruby>が<ruby>飲<rt>の</rt></ruby>みたいです。(我想喝水)</li>
                 </ul>
             </div>
         </section>
@@ -359,9 +388,13 @@
             <h2 class="section-title">6. 比較級與最高級</h2>
             <div class="grammar-box">
                 <div class="formula">比較：A <span class="particle">のほうが</span> B <span class="particle">より</span> (形容詞) です。</div>
-                <p>例：<ruby>猫<rt>ねこ</rt></ruby><strong>のほうが</strong><ruby>犬<rt>いぬ</rt></ruby><strong>より</strong><ruby>好<rt>す</rt></ruby>きです。(比起狗，我更喜歡貓)</p>
+                <ul class="example-list">
+                    <li class="example-item"><ruby>猫<rt>ねこ</rt></ruby><strong>のほうが</strong><ruby>犬<rt>いぬ</rt></ruby><strong>より</strong><ruby>好<rt>す</rt></ruby>きです。(比起狗，我更喜歡貓)</li>
+                </ul>
                 <div class="formula">最高級：(範圍) <span class="particle">で</span> (項目) <span class="particle">が</span> <span class="hl">一番</span> (形容詞) です。</div>
-                <p>例：スポーツ<strong>で</strong>サッカー<strong>が一番</strong><ruby>好<rt>す</rt></ruby>きです。(運動之中最喜歡足球)</p>
+                <ul class="example-list">
+                    <li class="example-item">スポーツ<strong>で</strong>サッカー<strong>が一番</strong><ruby>好<rt>す</rt></ruby>きです。(運動之中最喜歡足球)</li>
+                </ul>
             </div>
         </section>
 
@@ -991,6 +1024,7 @@
     </main>
 
     <script>
+        // Navigation Logic
         document.querySelectorAll('.nav-item').forEach(link => {
             link.addEventListener('click', function() {
                 document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
@@ -999,6 +1033,58 @@
                     document.querySelector('.sidebar').classList.remove('open');
                 }
             });
+        });
+
+        // Speech Synthesis Logic
+        // Helper function to extract clean text (excluding rt tags)
+        function getCleanText(element) {
+            const clone = element.cloneNode(true);
+            const rts = clone.querySelectorAll('rt');
+            rts.forEach(rt => rt.remove());
+            return clone.textContent.trim();
+        }
+
+        function speak(text) {
+            if (!window.speechSynthesis) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ja-JP';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function createSpeakButton(text) {
+            const btn = document.createElement('span');
+            btn.className = 'speak-btn';
+            btn.innerHTML = '🔊';
+            btn.title = '發音';
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                speak(text);
+            };
+            return btn;
+        }
+
+        // Inject buttons into Vocab Cards
+        document.querySelectorAll('.vocab-card').forEach(card => {
+            const wordEl = card.querySelector('.v-word');
+            if (wordEl) {
+                const text = getCleanText(wordEl);
+                if (text) {
+                    wordEl.appendChild(createSpeakButton(text));
+                }
+            }
+        });
+
+        // Inject buttons into Example Sentences
+        document.querySelectorAll('.example-item').forEach(item => {
+            const text = getCleanText(item);
+            if (text) {
+                // To avoid messing up the layout, we append it to the end, 
+                // but checking if it's already structured. 
+                // Usually example items are just li containing text/ruby.
+                item.appendChild(createSpeakButton(text));
+            }
         });
     </script>
 </body>
